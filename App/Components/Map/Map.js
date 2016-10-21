@@ -78,9 +78,7 @@ class Map extends React.Component {
 
         AsyncStorage.getItem('isLoggedIn', (err, result) => {
             this.setState({
-                user: result
-            });
-            this.setState({
+                user: result,
                 getUserInfo : false
 
             })
