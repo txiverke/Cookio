@@ -4,10 +4,8 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   txiverke
-* @Last modified time: 20-Oct-2016
+* @Last modified time: 25-Oct-2016
 */
-
-
 
 import {StyleSheet, Dimensions} from 'react-native';
 
@@ -26,6 +24,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 15,
         right: 15,
+        width: 45,
+        height: 45,
+    },
+    buttonViewLeft: {
+        position: 'absolute',
+        bottom: 15,
+        left: 15,
         width: 45,
         height: 45,
     },

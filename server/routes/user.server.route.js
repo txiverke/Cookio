@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   txiverke
-* @Last modified time: 20-Oct-2016
+* @Last modified time: 25-Oct-2016
 */
 
 const users = require('../controllers/user.server.controller');
@@ -12,13 +12,15 @@ const passport = require('passport');
 
 module.exports = (app) => {
 
-    app.route('/authenticate')
-        .post(users.login);
+    app.route('/signup').post(users.signup);
+    app.route('/signin').post(users.signin);
 
-    app.route('/users')
-        .post(users.create);
+    app.route('/api/users/:userId')
+        .post(users.update);
 
     app.route('/api/users')
         .get(users.list);
+
+    app.param('userId', users.userByID);
 
 };

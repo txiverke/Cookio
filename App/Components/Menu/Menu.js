@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
 * @Last modified by:   txiverke
-* @Last modified time: 21-Oct-2016
+* @Last modified time: 25-Oct-2016
 */
 
 import React from 'react';
@@ -12,6 +12,7 @@ import {Dimensions, ScrollView, View, Image, Text, TouchableHighlight, AsyncStor
 import Styles from '../../Styles';
 import Separator from '../Helpers/Separator';
 import Api from '../../Utils/Api';
+import SwitchUserType from './SwitchUserType';
 
 const AVATAR = 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png';
 const window = Dimensions.get('window');
@@ -20,24 +21,21 @@ const PROFILE = 'Profile';
 const NOTIFICATIONS = 'Notifications';
 const HISTORY = 'History';
 const SIGNOUT = 'Sign Out';
-const sections = [
-    {"text": PAYMENT},
-    {"text": PROFILE},
-    {"text": NOTIFICATIONS},
-    {"text": HISTORY},
-    {"text": SIGNOUT}
-];
 
 class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: JSON.parse(this.props.user)
+            user: this.props.user
         };
     }
 
+    switchUser() {
+        console.log('switched');
+    }
+
     render() {
-        const USER = this.state.user.user;
+        const USER = this.state.user;
         return (
             <ScrollView
                 scrollsToTop={false}
@@ -45,7 +43,7 @@ class Menu extends React.Component {
                 <View style={Styles.avatarContainer}>
                     <Image
                         style={Styles.avatar}
-                        source={{uri: AVATAR}}/>
+                        source={require('../../Assets/default_avatar.png')} />
                     <Text style={Styles.name}>{USER.fullName}</Text>
                     <Text style={Styles.email}>{USER.email}</Text>
                 </View>
@@ -55,7 +53,7 @@ class Menu extends React.Component {
                         style={Styles.itemIcon}
                         source={require('../../Assets/profile.png')} />
                     <Text
-                        onPress={() => this.props.onItemSelected(PROFILE, this.state.user.user._id)}
+                        onPress={() => this.props.onItemSelected(PROFILE, USER)}
                         style={Styles.item}>
                         {PROFILE}
                     </Text>
@@ -90,10 +88,13 @@ class Menu extends React.Component {
                         {HISTORY}
                     </Text>
                 </View>
+                <SwitchUserType
+                    switchUser={() => this.switchUser()}
+                    userType={USER.type} />
                 <View style={Styles.itemMenu}>
                     <Image
                         style={Styles.itemIcon}
-                        source={require('../../Assets/back.png')} />
+                        source={require('../../Assets/signout.png')} />
                     <Text
                         onPress={() => this.props.signOut()}
                         style={Styles.item}>
@@ -108,7 +109,7 @@ class Menu extends React.Component {
 
 Menu.propTypes = {
     onItemSelected: React.PropTypes.func.isRequired,
-    user: React.PropTypes.string.isRequired,
+    user: React.PropTypes.object.isRequired,
     signOut: React.PropTypes.func
 };
 

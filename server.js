@@ -4,16 +4,14 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   txiverke
-* @Last modified time: 20-Oct-2016
+* @Last modified time: 21-Oct-2016
 */
-
-
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const mongoose = require('./server/config/mongoose');
 const express = require('./server/config/express');
-var pass = require('./server/config/passport');
+const pass = require('./server/config/passport');
 const db = mongoose();
 const app = express();
 const passport = pass();

@@ -4,11 +4,11 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   txiverke
-* @Last modified time: 20-Oct-2016
+* @Last modified time: 25-Oct-2016
 */
 
 import React from 'react';
-import { Navigator, AsyncStorage, View } from 'react-native';
+import {Navigator, AsyncStorage, View} from 'react-native';
 import Routes from '../Config/Routes';
 
 class App extends React.Component {
@@ -23,30 +23,31 @@ class App extends React.Component {
 
     componentDidMount(){
         AsyncStorage.getItem('isLoggedIn', (err, result) => {
+            //AsyncStorage.removeItem('isLoggedIn')
             if (result === null) {
                 this.setState({
                     isLoading: false,
-                    initialRoute: 'Authenticate'
+                    initialRoute: 'SignIn'
                 });
             } else {
                 this.setState({
                     isLoading: false,
-                    initialRoute: 'Map'
+                    initialRoute: 'Dashboard'
                 });
             }
         });
     }
 
     render() {
-        if (this.state.isLoading) {
-            return <View></View>;
-        }
+        if (this.state.isLoading) return <View></View>;
+
         return (
             <Navigator
                 initialRoute = {{name: this.state.initialRoute}}
                 renderScene = {Routes.renderScene} />
         );
     }
+
 }
 
 export default App;

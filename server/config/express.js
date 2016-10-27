@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   txiverke
-* @Last modified time: 20-Oct-2016
+* @Last modified time: 24-Oct-2016
 */
 
 const express = require('express');
@@ -35,6 +35,9 @@ module.exports = () => {
     app.use(bodyParser.json({
         type: 'application/vnd.api+json'
     }));
+
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     require('../routes/user.server.route.js')(app);
 

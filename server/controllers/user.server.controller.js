@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   txiverke
-* @Last modified time: 20-Oct-2016
+* @Last modified time: 25-Oct-2016
 */
 
 const User = require('mongoose').model('User');
@@ -13,31 +13,73 @@ const uuid = require('node-uuid');
 const multiparty = require('multiparty');
 const fs = require('fs');
 
-exports.login = (req, res) => {
+exports.signup = (req, res) => {
 
-    console.log(req.body);
+  if (!req.user) {
+      console.log(req.body);
+      const user = new User(req.body);
+      user.provider = 'local';
+      user.avatar = 'default_avatar.png';
+
+      user.save((err) => {
+          if (err) {
+              res.status(404).json({
+                  message: 'Something was wrong!',
+                  success: false
+              });
+          } else {
+              req.login(user, (err) => {
+                  if (err) {
+                      res.status(404).json({
+                          message: 'Something was wrong!',
+                          success: false
+                      });
+                  } else {
+                      res.status(200).json({
+                          user: user,
+                          success: true
+                      });
+                  }
+              });
+          }
+      });
+
+    } else {
+      res.status(404).json({message: 'Something was wrong!'});
+  }
+
+};
+
+exports.signin = (req, res) => {
+
     const username = req.body.username;
     const password = req.body.password;
 
     User.findOne({username: username},
         (err, user) => {
             if (err || !user || !user.authenticate(password) ) {
-                res.status(404).json({message: 'Something was wrong!'});
+                res.status(404).json({
+                    message: err,
+                    success: false
+                });
             } else {
-                res.status(200).json({user: user});
+                res.status(200).json({
+                    user: user,
+                    success: true
+                });
             }
     });
 
 };
 
-exports.create = (req, res, next) => {
+exports.update = (req, res) => {
 
-    const user = new User(req.body);
-
-    user.save((err) => {
-        if (err) return next(err);
-
-        res.status(200).json(user);
+    User.findByIdAndUpdate(req.user.id, req.body, (err, user) => {
+        if (err) {
+            res.status(404).json({message: 'Something was wrong!'});
+        } else {
+            res.status(200).json({user: user});
+        }
     });
 
 };
@@ -54,28 +96,12 @@ exports.list = (req, res, next) => {
 
 };
 
-exports.read = (req, res) => {
-    res.json(req.user);
-};
+exports.userByID = (req, res, next, id) => {
 
-const getErrorMessage = (err) => {
+    User.findOne({ _id: id }, (err, user) => {
+        if (err) res.status(404).json({message: 'Something was wrong!'});
+        req.user = user;
+        next();
+    });
 
-    let message = '';
-
-    if (err.code) {
-        switch (err.code) {
-            case 11000:
-            case 11001:
-                message = 'Username already exists';
-                break;
-            default:
-                message = 'Something went wrong';
-        }
-    } else {
-        for (var errName in err.errors) {
-            if (err.errors[errName].message) message = err.errors[errName].message;
-        }
-    }
-    console.log(message)
-    return message;
 };
