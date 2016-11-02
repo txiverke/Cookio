@@ -3,13 +3,13 @@
 * @Date:   06-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
-* @Last modified by:   txiverke
-* @Last modified time: 18-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 28-Oct-2016
 */
 
 import React from 'react';
-import {TouchableHighlight, Text, Image} from 'react-native';
-import Style from '../../Styles';
+import {TouchableHighlight, Image} from 'react-native';
+import Styles from '../../Styles';
 
 const BUTTONBACK = require('../../Assets/back.png');
 
@@ -20,11 +20,11 @@ class ButtonBack extends React.Component {
     render() {
         return (
             <TouchableHighlight
-                style={Style.header_leftButton}
+                style={Styles.header_leftButton}
                 onPress={() => this.loadMainView()}
                 underlayColor='transparent'>
                 <Image
-                    style={Style.header_imageMenu}
+                    style={Styles.header_imageMenu}
                     source={BUTTONBACK} />
             </TouchableHighlight>
         );
@@ -32,7 +32,7 @@ class ButtonBack extends React.Component {
 }
 
 ButtonBack.propTypes={
-    loadMainView: React.PropTypes.func.isRequired
+    loadMainView: React.PropTypes.func
 };
 
 export default ButtonBack;

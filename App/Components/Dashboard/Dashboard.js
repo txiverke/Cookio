@@ -4,23 +4,22 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 27-Oct-2016
+* @Last modified time: 02-Nov-2016
 */
 
 import React from 'react';
 import {AsyncStorage, View} from 'react-native';
 import SideMenu from 'react-native-side-menu';
-import Map from './Map';
-import List from './List';
 import Menu from '../Menu/Menu.js';
-import Header from '../Header/Header.js';
 import Styles from '../../Styles';
-import ButtonGetList from './ButtonGetList';
+import Loader from '../Helpers/Loader';
+import API from '../../Utils/Api';
+import Guest from '../Guest/Guest';
+import Host from '../Host/Host';
 
-const TITLE = 'Cookio';
 const components = {
-    'map': Map,
-    'list': List
+    'guest': Guest,
+    'host' : Host
 };
 
 class Dashboard extends React.Component {
@@ -36,13 +35,26 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        AsyncStorage.getItem('isLoggedIn', (err, result) => {
+        if (!this.props.user) {
+            AsyncStorage.getItem('isLoggedIn', (err, result) => {
+                const user = JSON.parse(result);
+                const url = `api/users/${user._id}`;
+                API.get(url).then((res) => {
+                    this.setState({
+                        user: res.user,
+                        currentComponent: res.user.type,
+                        noRenderComponent: false
+                    });
+                })
+            });
+        } else {
+            console.log(this.props.user)
             this.setState({
-                user: JSON.parse(result),
-                currentComponent: 'map',
+                user: this.props.user,
+                currentComponent: this.props.user.type,
                 noRenderComponent: false
             })
-        });
+        }
     }
 
     onMenuItemSelected = (item, user) => {
@@ -64,37 +76,67 @@ class Dashboard extends React.Component {
         this.setState({isLoading: !value})
     }
 
-    toggle() {
+    toggleMenu() {
         this.setState({isOpen: !this.state.isOpen});
     }
 
-    renderComponent(value) {
-        this.setState({currentComponent: value})
+    updateMenuState(isOpen) {
+        this.setState({isOpen});
+    }
+
+    switchUser(value) {
+        const userType = String(value);
+        if (userType !== this.state.currentComponent ) {
+            this.toggleMenu();
+            console.log('value', userType)
+            this.setState({
+                currentComponent: userType,
+            });
+            const value = {
+                id: this.state.user.id,
+                firstName: this.state.user.firstName,
+                lastName: this.state.user.lastName,
+                email: this.state.user.email,
+                password: this.state.user.password,
+                type: userType
+            };
+            const url = `api/users/${value.id}`;
+            API.put(url, value).then((res) => {
+                console.log()
+                this.setState({user: res.user})
+            });
+        }
     }
 
     render() {
-        if (this.state.noRenderComponent) return <View></View>
-        const menu = <Menu
-            onItemSelected={this.onMenuItemSelected}
-            user={this.state.user}
-            signOut={() => this.signOut()} />;
-        const CurrentComponent = components[this.state.currentComponent];
-        return (
-            <SideMenu
-                menu={menu}
-                isOpen={this.state.isOpen}
-                openMenuOffset={310}>
-                <View style={Styles.wrapperContent}>
-                    <Header
-                        toggle={() => this.toggle()}
-                        title={TITLE}
-                        isLoading={this.state.isLoading} />
-                    <CurrentComponent isLoaded={(value) => this.isLoaded(value)}/>
-                    <ButtonGetList renderComponent={(value) => this.renderComponent(value)}/>
-                </View>
-            </SideMenu>
-        );
+        if (this.state.noRenderComponent) {
+            return (
+                <Loader isLoading={this.state.isLoading} />
+            )
+        } else {
+            const menu = <Menu
+                onItemSelected={this.onMenuItemSelected}
+                user={this.state.user}
+                signOut={() => this.signOut()}
+                switchUser={(value) => this.switchUser(value)}/>;
+            const CurrentComponent = components[this.state.currentComponent];
+            return (
+                <SideMenu
+                    menu={menu}
+                    isOpen={this.state.isOpen}
+                    onChange={(isOpen) => this.updateMenuState(isOpen)}
+                    openMenuOffset={310}>
+                    <CurrentComponent
+                        toggleMenu={() => this.toggleMenu()}
+                        isLoaded={(value) => this.isLoaded(value)} />
+                </SideMenu>
+            );
+        }
     }
+}
+
+Dashboard.propTypes = {
+    user: React.PropTypes.object
 }
 
 export default Dashboard;

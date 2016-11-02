@@ -3,8 +3,8 @@
 * @Date:   18-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 24-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 28-Oct-2016
 */
 
 const config = require('./config');
@@ -16,6 +16,7 @@ module.exports = () => {
     const db = mongoose.connect(config.db);
 
     require('../models/user.server.model');
+    //require('../models/guest.server.model');
 
     return db;
 };

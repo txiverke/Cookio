@@ -3,8 +3,8 @@
 * @Date:   19-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 25-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 02-Nov-2016
 */
 
 const User = require('mongoose').model('User');
@@ -16,9 +16,10 @@ const fs = require('fs');
 exports.signup = (req, res) => {
 
   if (!req.user) {
-      console.log(req.body);
+
       const user = new User(req.body);
       user.provider = 'local';
+      user.type = 'guest';
       user.avatar = 'default_avatar.png';
 
       user.save((err) => {
@@ -72,20 +73,44 @@ exports.signin = (req, res) => {
 
 };
 
+exports.read = (req, res) => {
+    res.status(200).json({user: req.user});
+};
+
 exports.update = (req, res) => {
 
-    User.findByIdAndUpdate(req.user.id, req.body, (err, user) => {
+    const user = req.user;
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.email = req.body.email;
+    user.password = req.body.password ? user.hashPassword(req.body.password) : user.password;
+    user.type = (req.body.type === undefined) ? req.user.type : req.body.type;
+
+    User.findByIdAndUpdate(req.user.id, user, (err, user) => {
         if (err) {
-            res.status(404).json({message: 'Something was wrong!'});
+            res.status(4040).json({
+                message: 'Something was wrong!',
+                success: false
+            });
         } else {
-            res.status(200).json({user: user});
+            User.findOne({_id: user.id}, (err, user) => {
+                if (err) {
+                    res.status(404).json({
+                        message: 'Something was wrong!',
+                        success: false
+                    });
+                } else {
+                    res.status(200).json({
+                        user: user,
+                        success: true
+                    });
+                }
+            });
         }
     });
-
 };
 
 exports.list = (req, res, next) => {
-
     User.find({}, (err, users) => {
         if (err) {
             return next(err);
@@ -93,15 +118,16 @@ exports.list = (req, res, next) => {
             res.json(users);
         }
     });
-
 };
 
 exports.userByID = (req, res, next, id) => {
 
     User.findOne({ _id: id }, (err, user) => {
-        if (err) res.status(404).json({message: 'Something was wrong!'});
+        if (err) {
+            res.status(404).json({message: 'Something was wrong!'});
+        }
+
         req.user = user;
         next();
     });
-
 };

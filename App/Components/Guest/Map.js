@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 27-Oct-2016
+* @Last modified time: 02-Nov-2016
 */
 
 import React from 'react';
@@ -60,16 +60,10 @@ class Map extends React.Component {
             this.onRegionChange(newRegion);
         });
 
-        Api.getMarkers('barcelona')
-            .then((res) => {
-                this.setState({markers: res});
-                this.props.isLoaded(true);
-            });
         this.props.isLoaded(true);
     }
 
     componentWillUnmount() {
-        console.log('COMPONENT WILL UNMOUNT');
         navigator.geolocation.clearWatch(this.watchID);
     }
 

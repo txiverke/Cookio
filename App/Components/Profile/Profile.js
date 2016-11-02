@@ -3,12 +3,12 @@
 * @Date:   06-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
-* @Last modified by:   txiverke
-* @Last modified time: 24-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 02-Nov-2016
 */
 
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, Text, ScrollView, StyleSheet, TouchableHighlight, AsyncStorage} from 'react-native';
 import t from 'tcomb-form-native';
 import Styles from '../../Styles';
 import NavBar from '../Header/Header';
@@ -20,7 +20,7 @@ const User = t.struct({
     firstName: t.String,
     lastName: t.String,
     email: t.String,
-    password: t.maybe(t.String)
+    changePassword: t.maybe(t.String)
 });
 const options = {};
 
@@ -28,6 +28,13 @@ class Profile extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            user: {},
+            isLoading: true
+        };
+    }
+
+    componentDidMount() {
+        this.setState({
             user: {
                 id: this.props.user._id,
                 firstName: this.props.user.firstName,
@@ -35,29 +42,28 @@ class Profile extends React.Component {
                 email: this.props.user.email,
                 password: ''
             },
-            isLoading: true
-        };
+            isLoading: false
+        });
     }
+
     onPress(){
         const formData = this.refs.form.getValue();
-        console.log('formData', formData);
         if (formData) {
             const value = {
                 id: this.state.user.id,
-                firstName: formData.firstName.toLowerCase().trim(),
-                lastName: formData.lastName.toLowerCase().trim(),
+                firstName: formData.firstName.trim(),
+                lastName: formData.lastName.trim(),
                 email: formData.email.toLowerCase().trim(),
-                password: formData.password
+                password: formData.changePassword
             };
-            Api.user.update(value).then((res) => {
-                console.log('updata user response', res)
-                /*AsyncStorage.setItem('isLoggedIn', JSON.stringify(res));
+            const url = `api/users/${value.id}`;
+            API.put(url, value).then((res) => {
                 this.props.navigator.push({
-                    name: 'Map',
+                    name: 'Dashboard',
                     passProps: {
-                        user: res
+                        user: res.user
                     }
-                });*/
+                });
             });
         }
     }

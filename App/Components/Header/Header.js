@@ -3,8 +3,8 @@
 * @Date:   06-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
-* @Last modified by:   txiverke
-* @Last modified time: 19-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 01-Nov-2016
 */
 
 import React from 'react';
@@ -13,13 +13,16 @@ import ButtonMenu from './ButtonMenu';
 import ButtonBack from './ButtonBack';
 import Style from '../../Styles';
 
-const NavBar = ({toggle, title, loadMainView, isLoading}) => {
+const Header = ({toggleMenu, title, loadMainView, isLoading}) => {
     let leftButton;
-    if (title === 'Cookio') {
-        leftButton = <ButtonMenu toggle={toggle} />;
+    if (title === 'Loading') {
+        leftButton = <View style={Style.header_leftButton}></View>;
+    } else if (title === 'Cookio') {
+        leftButton = <ButtonMenu toggleMenu={toggleMenu} />;
     } else {
         leftButton = <ButtonBack loadMainView={loadMainView}/>;
     }
+
     return (
         <View style={Style.header}>
             {leftButton}
@@ -35,11 +38,11 @@ const NavBar = ({toggle, title, loadMainView, isLoading}) => {
     )
 };
 
-NavBar.propTypes = {
-    toggle: React.PropTypes.func,
+Header.propTypes = {
+    toggleMenu: React.PropTypes.func,
     title: React.PropTypes.string.isRequired,
     loadMainView: React.PropTypes.func,
     isLoading: React.PropTypes.bool.isRequired
 }
 
-export default NavBar;
+export default Header;

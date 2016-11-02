@@ -3,8 +3,8 @@
 * @Date:   18-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 25-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 28-Oct-2016
 */
 
 import {StyleSheet, Dimensions} from 'react-native';

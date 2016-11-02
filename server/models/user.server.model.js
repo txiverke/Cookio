@@ -3,8 +3,8 @@
 * @Date:   18-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 24-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 02-Nov-2016
 */
 
 const mongoose = require('mongoose');
@@ -42,7 +42,10 @@ const UserSchema = new Schema({
     },
     type: {
         type: String,
-        enum: ['Admin', 'Guest', 'Host']
+        enum: ['admin', 'guest', 'host']
+    },
+    rating: {
+        type: Number
     },
     salt: {
         type: String
@@ -69,6 +72,7 @@ UserSchema.virtual('fullName').get(function() {
 
 UserSchema.pre('save', function(next) {
     if (this.password) {
+        console.log('save', this.password)
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
         this.password = this.hashPassword(this.password);
     }
@@ -80,6 +84,7 @@ UserSchema.methods.hashPassword = function(password) {
 };
 
 UserSchema.methods.authenticate = function(password) {
+    console.log(password)
     return this.password === this.hashPassword(password);
 };
 

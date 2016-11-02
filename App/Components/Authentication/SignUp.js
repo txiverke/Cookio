@@ -3,8 +3,8 @@
 * @Date:   24-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 25-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 02-Nov-2016
 */
 
 import React from 'react';
@@ -18,7 +18,6 @@ const User = t.struct({
     lastName: t.String,
     username: t.String,
     email: t.String,
-    registerAsHost: t.Boolean,
     password: t.String
 });
 const options = {};
@@ -27,32 +26,21 @@ class SignUp extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            user: {
-                firstName: '',
-                lastName: '',
-                username: '',
-                email: '',
-                type: '',
-                password: ''
-            },
             isLoading: true
         };
     }
     onPress(){
         const formData = this.refs.form.getValue();
         if (formData) {
-            console.log('host', formData.registerAsHost)
-            const typeOfUser = formData.registerAsHost ? 'Host' : 'Guest';
-            console.log('typeOfUser', typeOfUser)
+            const typeOfUser = formData.registerAsHost ? 'host' : 'guest';
             const value = {
-                firstName: formData.firstName.toLowerCase().trim(),
-                lastName: formData.lastName.toLowerCase().trim(),
+                firstName: formData.firstName.trim(),
+                lastName: formData.lastName.trim(),
                 username: formData.username.toLowerCase().trim(),
                 email: formData.email.toLowerCase().trim(),
-                type: typeOfUser,
                 password: formData.password
             };
-            API.user.signup(value).then((res) => {
+            API.post('signup', value).then((res) => {
                 if (res.success) {
                     AsyncStorage.setItem('isLoggedIn', JSON.stringify(res.user));
                     this.props.navigator.push({

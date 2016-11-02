@@ -3,8 +3,8 @@
 * @Date:   18-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 24-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 02-Nov-2016
 */
 
 const express = require('express');
@@ -16,6 +16,7 @@ const session = require('cookie-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 module.exports = () => {
 
@@ -36,14 +37,15 @@ module.exports = () => {
         type: 'application/vnd.api+json'
     }));
 
+    app.use(methodOverride());
+
     app.use(passport.initialize());
     app.use(passport.session());
 
     require('../routes/user.server.route.js')(app);
+    //require('../routes/guest.server.route.js')(app);
 
-    app.use(methodOverride());
-
-    app.use(express.static('./public'));
+    app.use("./public", express.static(path.join(__dirname, 'public')));
 
     return app;
 };

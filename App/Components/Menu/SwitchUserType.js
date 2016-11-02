@@ -3,8 +3,8 @@
 * @Date:   22-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 25-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 02-Nov-2016
 */
 
 import React from 'react';
@@ -15,30 +15,35 @@ class SwitchUserType extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userType: this.props.userType,
-            userText: ''
-        };
+            userType: this.props.userType
+          };
     }
 
     componentDidMount(){
-        this.checkUser();
+        this.checkUser(this.props.userType);
     }
 
-    checkUser(){
-        switch(this.state.userType) {
-            case 'Host':
+    checkUser(value){
+        switch(value) {
+            case 'host':
                 this.setState({
-                    userType: 'Guest',
-                    userText:'Switch to Host'
-                }) ;
-                break;
-            case 'Guest':
-                this.setState({
-                    userType: 'Host',
+                    userType: 'host',
                     userText:'Switch to Guest'
                 }) ;
                 break;
+            case 'guest':
+                this.setState({
+                    userType: 'guest',
+                    userText:'Switch to Host'
+                }) ;
+                break;
         }
+        this.props.switchUser(value);
+    }
+
+    switchUser() {
+        const currentUser = (this.state.userType === 'guest') ? 'host' : 'guest';
+        this.checkUser(currentUser);
     }
 
     render () {
@@ -48,7 +53,7 @@ class SwitchUserType extends React.Component {
                     style={Styles.itemIcon}
                     source={require('../../Assets/switch.png')} />
                 <Text
-                    onPress={() => this.checkUser()}
+                    onPress={() => this.switchUser()}
                     style={Styles.item}>
                     {this.state.userText}
                 </Text>

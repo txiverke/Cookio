@@ -3,13 +3,14 @@
 * @Date:   18-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 25-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 02-Nov-2016
 */
 
 import React from 'react';
 import {Navigator, AsyncStorage, View} from 'react-native';
 import Routes from '../Config/Routes';
+import Loader from './Helpers/Loader';
 
 class App extends React.Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class App extends React.Component {
 
     componentDidMount(){
         AsyncStorage.getItem('isLoggedIn', (err, result) => {
-            //AsyncStorage.removeItem('isLoggedIn')
+            //AsyncStorage.removeItem('isLoggedIn');
             if (result === null) {
                 this.setState({
                     isLoading: false,
@@ -39,8 +40,11 @@ class App extends React.Component {
     }
 
     render() {
-        if (this.state.isLoading) return <View></View>;
-
+        if (this.state.isLoading) {
+            return (
+                <Loader isLoading={this.state.isLoading} />
+            );
+        }
         return (
             <Navigator
                 initialRoute = {{name: this.state.initialRoute}}

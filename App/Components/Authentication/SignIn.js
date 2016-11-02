@@ -3,8 +3,8 @@
 * @Date:   19-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 25-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 02-Nov-2016
 */
 
 import React from 'react';
@@ -26,10 +26,9 @@ class SignIn extends React.Component {
         if (formData) {
             const value = {
                 username: formData.username.toLowerCase().trim(),
-                password: formData.password.toLowerCase().trim()
+                password: formData.password.trim()
             };
-            API.user.signin(value).then((res) => {
-                console.log('res',res)
+            API.post('signin', value).then((res) => {
                 if (res.success) {
                     AsyncStorage.setItem('isLoggedIn', JSON.stringify(res.user));
                     this.props.navigator.push({
@@ -50,7 +49,10 @@ class SignIn extends React.Component {
             <View style={styles.container}>
                 {/* display */}
                 <Form ref="form" type={User} options={options} />
-                <TouchableHighlight style={styles.button} onPress={() => this.onPress()} underlayColor='#99d9f4'>
+                <TouchableHighlight
+                    style={styles.button}
+                    onPress={() => this.onPress()}
+                    underlayColor='#99d9f4'>
                     <Text style={styles.buttonText}>Save</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
