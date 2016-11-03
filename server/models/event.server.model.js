@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 28-Oct-2016
+* @Last modified time: 03-Nov-2016
 */
 
 const mongoose = require('mongoose');
@@ -29,6 +29,7 @@ const EventSchema = new Schema({
     description: {
         type: String
     },
+    price: String,
     city: String,
     latitude: String,
     longitude: String,

@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 02-Nov-2016
+* @Last modified time: 03-Nov-2016
 */
 
 const User = require('mongoose').model('User');
@@ -130,4 +130,14 @@ exports.userByID = (req, res, next, id) => {
         req.user = user;
         next();
     });
+};
+
+exports.requiresLogin = (req, res, next) => {
+
+    if (!req.isAuthenticated()) {
+         res.status(401).json({message: 'User is not logged in'});
+    }
+
+    next();
+
 };

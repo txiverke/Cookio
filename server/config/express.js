@@ -4,9 +4,10 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 02-Nov-2016
+* @Last modified time: 03-Nov-2016
 */
 
+const config = require('./config');
 const express = require('express');
 const morgan = require('morgan');
 const compress = require('compression');
@@ -39,11 +40,16 @@ module.exports = () => {
 
     app.use(methodOverride());
 
+    app.use(session({
+        name: 'cookioSession',
+        keys: [config.sessionSecret]
+    }));
+
     app.use(passport.initialize());
     app.use(passport.session());
 
     require('../routes/user.server.route.js')(app);
-    //require('../routes/guest.server.route.js')(app);
+    require('../routes/event.server.route.js')(app);
 
     app.use("./public", express.static(path.join(__dirname, 'public')));
 

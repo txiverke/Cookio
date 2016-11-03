@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 02-Nov-2016
+* @Last modified time: 03-Nov-2016
 */
 
 const mongoose = require('mongoose');
@@ -84,7 +84,6 @@ UserSchema.methods.hashPassword = function(password) {
 };
 
 UserSchema.methods.authenticate = function(password) {
-    console.log(password)
     return this.password === this.hashPassword(password);
 };
 

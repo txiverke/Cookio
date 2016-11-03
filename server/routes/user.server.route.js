@@ -18,12 +18,12 @@ module.exports = (app) => {
     app.route('/signin')
         .post(users.signin);
 
+    app.route('/api/users')
+        .get(users.list);
+
     app.route('/api/users/:userId')
         .get(users.read)
         .put(users.update);
-
-    app.route('/api/users')
-        .get(users.list);
 
     app.param('userId', users.userByID);
 

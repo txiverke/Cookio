@@ -4,27 +4,30 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 01-Nov-2016
+* @Last modified time: 02-Nov-2016
 */
 
 import React from 'react';
 import {View, Text} from 'react-native';
 import Header from '../Header/Header';
 import Styles from '../../Styles';
+import Create from './Create';
 
 const TITLE = 'Cookio';
-/*const components = {
-    'view': View,
-    'edit': Edit,
-    'list': List
-};*/
+const components = {
+    'create': Create
+};
 
 class Host extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: false,
+            currentComponent: 'create'
         };
+    }
+    renderComponent(value) {
+        this.setState((currentComponent: value))
     }
     toggleMenu() {
         this.props.toggleMenu();
@@ -34,13 +37,14 @@ class Host extends React.Component {
         this.setState({isLoading: !value});
     }
     render() {
+        const CurrentComponent = components[this.state.currentComponent];
         return (
             <View style={Styles.wrapperContent}>
-            <Header
-                toggleMenu={() => this.toggleMenu()}
-                title={TITLE}
-                isLoading={this.state.isLoading} />
-                <Text isLoaded={() => this.isLoaded(true)}>Host</Text>
+                <Header
+                    toggleMenu={() => this.toggleMenu()}
+                    title={TITLE}
+                    isLoading={this.state.isLoading} />
+                    <CurrentComponent isLoaded={() => this.isLoaded(true)} />
             </View>
         );
     }

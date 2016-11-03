@@ -4,31 +4,41 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 28-Oct-2016
+* @Last modified time: 03-Nov-2016
 */
 
-const Guest = require('mongoose').model('Guest');
+const Event = require('mongoose').model('Event');
 
 exports.create = (req, res) => {
 
-        console.log('guest', req.body)
-        const guest = new Guest(req.body);
-        guest.creator = req.user;
+    const event = new Event(req.body);
+    event.creator = req.user;
 
-        guest.save((err) => {
+    event.save((err) => {
+        if (err) {
+            res.status(404).json({
+                message: err,
+                success: false
+            });
+        } else {
+            res.status(200).json({
+                event: event,
+                success: true
+            });
+        }
 
-            if (err) {
-                res.status(404).json({
-                    message: 'Something was wrong!',
-                    success: false
-                });
-            } else {
-                res.status(200).json({
-                    guest: guest,
-                    success: true
-                });
-            }
+    });
 
-        });
+};
 
-    };
+exports.list = (req, res) => {
+
+};
+
+exports.update = (req, res) => {
+
+};
+
+exports.eventByID = (req, res, next, id) => {
+
+};
