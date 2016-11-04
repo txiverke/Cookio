@@ -31,12 +31,12 @@ class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: 'Fill the fields'
+            message: ''
         };
     }
     onPress(){
         const formData = this.refs.form.getValue();
-        this.setState({message: ''})
+        this.setState({message: ''});
         if (formData) {
             const value = {
                 username: formData.username.toLowerCase().trim(),
@@ -55,9 +55,7 @@ class SignIn extends React.Component {
                     this.setState({
                         message : 'Something was wrong!'
                     });
-                    console.log('err', this.state.message)
                 }
-
             });
         }
     }
@@ -89,7 +87,6 @@ class SignIn extends React.Component {
                     underlayColor='#4ECDC4'>
                     <Text style={Styles.form_buttonText}>Sign In</Text>
                 </TouchableHighlight>
-
                 <Text style={Styles.error}>{this.state.message}</Text>
             </View>
         );

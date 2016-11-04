@@ -22,14 +22,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     error: {
-        flex: 1,
-        flexDirection: 'column',
-        position: 'absolute',
-        bottom: 0,
+        top:15,
         textAlign: 'center',
-        backgroundColor: 'red'
-
+        color: MAINCOLOR,
+        fontSize: 15
     },
+
     /*
      * FORM STYLES
      */
