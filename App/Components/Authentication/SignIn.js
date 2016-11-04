@@ -4,25 +4,39 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 02-Nov-2016
+* @Last modified time: 04-Nov-2016
 */
 
 import React from 'react';
-import {View, Text, TouchableHighlight, StyleSheet, AsyncStorage} from 'react-native';
+import {View, Text, Image, TouchableHighlight, StyleSheet, AsyncStorage} from 'react-native';
 import t from 'tcomb-form-native';
 import API from '../../Utils/Api';
 import SignUp from './SignUp';
+import Styles from '../../Styles';
 
 const Form = t.form.Form;
 const User = t.struct({
     username: t.String,
     password: t.String
 });
-const options = {};
+const options = {
+    auto: 'placeholders',
+    fields: {
+        username: {},
+        password: {}
+    }
+};
 
 class SignIn extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            message: 'Fill the fields'
+        };
+    }
     onPress(){
         const formData = this.refs.form.getValue();
+        this.setState({message: ''})
         if (formData) {
             const value = {
                 username: formData.username.toLowerCase().trim(),
@@ -38,7 +52,10 @@ class SignIn extends React.Component {
                         }
                     });
                 } else {
-                    console.log('err', res)
+                    this.setState({
+                        message : 'Something was wrong!'
+                    });
+                    console.log('err', this.state.message)
                 }
 
             });
@@ -46,53 +63,37 @@ class SignIn extends React.Component {
     }
     render() {
         return (
-            <View style={styles.container}>
-                {/* display */}
-                <Form ref="form" type={User} options={options} />
+            <View style={Styles.form_wrapper}>
+
                 <TouchableHighlight
-                    style={styles.button}
-                    onPress={() => this.onPress()}
-                    underlayColor='#99d9f4'>
-                    <Text style={styles.buttonText}>Save</Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                    style={styles.button}
+                    style={Styles.form_buttonPush}
                     onPress={() => this.props.navigator.push({name: 'SignUp'})}
-                    underlayColor='#99d9f4'>
-                    <Text style={styles.buttonText}>Register</Text>
+                    underlayColor='transparent'>
+                    <View style={Styles.form_buttonNav}>
+                        <Text style={Styles.form_buttonPushText}>Register</Text>
+                        <View style={Styles.form_buttonImageWrapper}>
+                            <Image
+                                style={Styles.form_buttonPushImage}
+                                source={require('../../Assets/up.png')} />
+                        </View>
+                    </View>
                 </TouchableHighlight>
+                <Text style={Styles.form_title}>Sign In to Cookio</Text>
+                <Form
+                    ref="form"
+                    type={User}
+                    options={options} />
+                <TouchableHighlight
+                    style={Styles.form_button}
+                    onPress={() => this.onPress()}
+                    underlayColor='#4ECDC4'>
+                    <Text style={Styles.form_buttonText}>Sign In</Text>
+                </TouchableHighlight>
+
+                <Text style={Styles.error}>{this.state.message}</Text>
             </View>
         );
     }
 }
-
-var styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-  title: {
-    fontSize: 30,
-    alignSelf: 'center',
-    marginBottom: 30
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
 
 export default SignIn;

@@ -25,14 +25,14 @@ exports.signup = (req, res) => {
       user.save((err) => {
           if (err) {
               res.status(404).json({
-                  message: 'Something was wrong!',
+                  message: err,
                   success: false
               });
           } else {
               req.login(user, (err) => {
                   if (err) {
                       res.status(404).json({
-                          message: 'Something was wrong!',
+                          message: err,
                           success: false
                       });
                   } else {

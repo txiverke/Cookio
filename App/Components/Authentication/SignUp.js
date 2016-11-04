@@ -4,13 +4,14 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 02-Nov-2016
+* @Last modified time: 04-Nov-2016
 */
 
 import React from 'react';
-import {View, Text, StyleSheet, TouchableHighlight, AsyncStorage} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableHighlight, AsyncStorage} from 'react-native';
 import t from 'tcomb-form-native';
 import API from '../../Utils/Api';
+import Styles from '../../Styles';
 
 const Form = t.form.Form;
 const User = t.struct({
@@ -20,7 +21,9 @@ const User = t.struct({
     email: t.String,
     password: t.String
 });
-const options = {};
+const options = {
+    auto: 'placeholders'
+};
 
 class SignUp extends React.Component {
     constructor(props){
@@ -50,53 +53,41 @@ class SignUp extends React.Component {
                         }
                     });
                 } else {
-                    console.log('err', err)
+                    console.log('err', res.message)
                 }
             });
         }
     }
     render(){
         return (
-            <View style={styles.container}>
+            <View style={Styles.form_wrapper}>
+                <TouchableHighlight
+                    style={Styles.form_buttonPop}
+                    onPress={() => this.props.navigator.pop()}
+                    underlayColor='transparent'>
+                    <View style={Styles.form_buttonNav}>
+                        <View style={Styles.form_buttonImageWrapper}>
+                            <Image
+                                style={Styles.form_buttonPopImage}
+                                source={require('../../Assets/back.png')} />
+                        </View>
+                        <Text style={Styles.form_buttonPopText}>Sign In</Text>
+                    </View>
+                </TouchableHighlight>
+                <Text style={Styles.form_title}>Register to Cookio</Text>
                 <Form
                     ref="form"
                     type={User}
                     options={options} />
-                <TouchableHighlight style={styles.button} onPress={() => this.onPress()} underlayColor='#99d9f4'>
-                    <Text style={styles.buttonText}>Register</Text>
-                </TouchableHighlight>
+                    <TouchableHighlight
+                        style={Styles.form_button}
+                        onPress={() => this.onPress()}
+                        underlayColor='#99d9f4'>
+                        <Text style={Styles.form_buttonText}>Register</Text>
+                    </TouchableHighlight>
             </View>
         );
     }
 }
-
-var styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-  title: {
-    fontSize: 30,
-    alignSelf: 'center',
-    marginBottom: 30
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
 
 export default SignUp;

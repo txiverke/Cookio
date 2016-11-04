@@ -43,7 +43,8 @@ const EventSchema = new Schema({
     creator: {
         type: Schema.ObjectId,
         ref: 'User'
-    }
+    },
+    creator_name: String
 });
 
 mongoose.model('Event', EventSchema);

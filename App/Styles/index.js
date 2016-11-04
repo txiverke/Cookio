@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 28-Oct-2016
+* @Last modified time: 04-Nov-2016
 */
 
 import {StyleSheet, Dimensions} from 'react-native';
@@ -13,6 +13,7 @@ const {width, height} = Dimensions.get('window');
 const SUBCOLOR  = '#4ECDC4';
 const MAINCOLOR = '#ff3366';
 const TEXTCOLOR = '#262938';
+const BACKGROUND = '#f1f1f1';
 
 const styles = StyleSheet.create({
     wrapperContent: {
@@ -20,6 +21,94 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: 'white'
     },
+    error: {
+        flex: 1,
+        flexDirection: 'column',
+        position: 'absolute',
+        bottom: 0,
+        textAlign: 'center',
+        backgroundColor: 'red'
+
+    },
+    /*
+     * FORM STYLES
+     */
+    form_wrapper: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        backgroundColor: BACKGROUND,
+        padding: 35
+    },
+    form_title: {
+        fontWeight: '100',
+        fontSize: 35,
+        textAlign: 'center',
+        color: TEXTCOLOR,
+        paddingBottom: 45
+    },
+    form_button: {
+        height: 45,
+        backgroundColor: SUBCOLOR,
+        borderColor: SUBCOLOR,
+        borderWidth: 1,
+        borderRadius: 25,
+        marginTop: 10,
+        marginBottom: 10,
+        alignSelf: 'stretch',
+        justifyContent: 'center'
+    },
+    form_buttonText: {
+        fontSize: 18,
+        color: 'white',
+        alignSelf: 'center',
+    },
+    form_buttonPush: {
+        position: 'absolute',
+        top: 20,
+        right: 20,
+        width: 125,
+    },
+    form_buttonPop: {
+        position: 'absolute',
+        top: 20,
+        left: 20,
+        width: 120
+    },
+    form_buttonNav: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    form_buttonPushText: {
+        top:1,
+        flex: 3/4,
+        fontSize: 15,
+        marginTop: 22,
+        textAlign: 'right'
+    },
+    form_buttonPopText: {
+        top:1,
+        flex: 3/4,
+        fontSize: 15,
+        marginTop: 22,
+        textAlign: 'left'
+    },
+    form_buttonImageWrapper: {
+        flex: 1/4,
+        marginTop: 7,
+        padding: 13,
+        marginLeft: 0,
+    },
+    form_buttonPushImage: {
+        width: 25,
+        height: 25,
+    },
+    form_buttonPopImage: {
+        width: 25,
+        height: 25,
+    },
+
+
     buttonViewWrapper: {
         position: 'absolute',
         bottom: 15,
@@ -231,7 +320,7 @@ const styles = StyleSheet.create({
        right: 0,
        bottom: 0,
        justifyContent: 'flex-end',
-  },
+   },
    map: {
        position: 'absolute',
        top: 75,
@@ -294,7 +383,6 @@ const styles = StyleSheet.create({
    separator: {
        height: 1,
        backgroundColor: '#e6e6e6',
-       flex: 1,
        marginLeft: 0,
        marginBottom: 15
    },
