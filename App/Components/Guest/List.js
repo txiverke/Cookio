@@ -3,8 +3,8 @@
 * @Date:   24-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 25-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
@@ -19,6 +19,9 @@ class List extends React.Component {
     }
     componentDidMount() {
 
+    }
+    createEvent(){
+        this.props.createEvent('list');
     }
     render() {
         return (

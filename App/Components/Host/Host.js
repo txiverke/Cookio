@@ -35,7 +35,8 @@ class Host extends React.Component {
         };
     }
     renderComponent(value) {
-        this.setState((currentComponent: value))
+        console.log('value', value)
+        this.setState({currentComponent: value});
     }
     toggleMenu() {
         this.props.toggleMenu();
@@ -54,7 +55,9 @@ class Host extends React.Component {
                     type={type}
                     title={currentTitle}
                     isLoading={this.state.isLoading} />
-                    <CurrentComponent isLoaded={() => this.isLoaded(true)} />
+                    <CurrentComponent
+                        isLoaded={() => this.isLoaded(true)}
+                        createEvent={(value) => this.renderComponent(value)}/>
             </View>
         );
     }

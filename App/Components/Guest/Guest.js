@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 05-Nov-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
@@ -14,12 +14,17 @@ import List from './List';
 import ButtonSwitchComponent from './ButtonSwitchComponent';
 import Header from '../Header/Header.js';
 import Styles from '../../Styles';
-import API from '../../Utils/Api';
 
-const TITLE = 'Cookio';
+const type = 'View';
 const components = {
-    'map': Map,
-    'list': List
+    map: {
+        name: Map,
+        title: 'Event\'s Map'
+    },
+    list: {
+        name: List,
+        title: 'List of Events'
+    }
 };
 
 class Guest extends React.Component {
@@ -44,12 +49,14 @@ class Guest extends React.Component {
     }
 
     render() {
-        const CurrentComponent = components[this.state.currentComponent];
+        const CurrentComponent = components[this.state.currentComponent].name;
+        const currentTitle = components[this.state.currentComponent].title;
         return (
             <View style={Styles.wrapperContent}>
                 <Header
                     toggleMenu={() => this.toggleMenu()}
-                    title={TITLE}
+                    type={type}
+                    title={currentTitle}
                     isLoading={this.state.isLoading} />
                 <CurrentComponent isLoaded={(value) => this.isLoaded(value)} />
                 <ButtonSwitchComponent

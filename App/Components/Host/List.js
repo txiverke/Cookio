@@ -10,15 +10,25 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import Styles from '../../Styles';
+import ButtonCreateEvent from './ButtonCreateEvent';
 
 class List extends React.Component {
+    createEvent(){
+        this.props.createEvent('create');
+    }
     render() {
         return (
             <View style={Styles.form_contentTop}>
                 <Text>List</Text>
+                <ButtonCreateEvent
+                    createEvent={() => this.createEvent()}/>
             </View>
         );
     }
 }
+
+ButtonCreateEvent.propTypes = {
+    createEvent: React.PropTypes.func.isRequired
+};
 
 export default List;

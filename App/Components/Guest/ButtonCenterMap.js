@@ -3,8 +3,8 @@
 * @Date:   04-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
-* @Last modified by:   txiverke
-* @Last modified time: 18-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
