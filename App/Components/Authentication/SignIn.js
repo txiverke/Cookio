@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 04-Nov-2016
+* @Last modified time: 05-Nov-2016
 */
 
 import React from 'react';
@@ -62,32 +62,35 @@ class SignIn extends React.Component {
     render() {
         return (
             <View style={Styles.form_wrapper}>
-
-                <TouchableHighlight
-                    style={Styles.form_buttonPush}
-                    onPress={() => this.props.navigator.push({name: 'SignUp'})}
-                    underlayColor='transparent'>
-                    <View style={Styles.form_buttonNav}>
-                        <Text style={Styles.form_buttonPushText}>Register</Text>
-                        <View style={Styles.form_buttonImageWrapper}>
-                            <Image
-                                style={Styles.form_buttonPushImage}
-                                source={require('../../Assets/up.png')} />
+                <View style={Styles.form_navBar}>
+                    <TouchableHighlight
+                        style={Styles.form_buttonPush}
+                        onPress={() => this.props.navigator.push({name: 'SignUp'})}
+                        underlayColor='transparent'>
+                        <View style={Styles.form_buttonNav}>
+                            <Text style={Styles.form_buttonPushText}>Register</Text>
+                            <View style={Styles.form_buttonImageWrapper}>
+                                <Image
+                                    style={Styles.form_buttonPushImage}
+                                    source={require('../../Assets/up.png')} />
+                            </View>
                         </View>
-                    </View>
-                </TouchableHighlight>
-                <Text style={Styles.form_title}>Sign In to Cookio</Text>
-                <Form
-                    ref="form"
-                    type={User}
-                    options={options} />
-                <TouchableHighlight
-                    style={Styles.form_button}
-                    onPress={() => this.onPress()}
-                    underlayColor='#4ECDC4'>
-                    <Text style={Styles.form_buttonText}>Sign In</Text>
-                </TouchableHighlight>
-                <Text style={Styles.error}>{this.state.message}</Text>
+                    </TouchableHighlight>
+                </View>
+                <View style={Styles.form_navContent}>
+                    <Text style={Styles.form_title}>Sign In to Cookio</Text>
+                    <Form
+                        ref="form"
+                        type={User}
+                        options={options} />
+                    <TouchableHighlight
+                        style={Styles.form_button}
+                        onPress={() => this.onPress()}
+                        underlayColor='#262938'>
+                        <Text style={Styles.form_buttonText}>Sign In</Text>
+                    </TouchableHighlight>
+                    <Text style={Styles.error}>{this.state.message}</Text>
+                </View>
             </View>
         );
     }

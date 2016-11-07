@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 02-Nov-2016
+* @Last modified time: 05-Nov-2016
 */
 
 import React from 'react';
@@ -88,7 +88,7 @@ class Map extends React.Component {
         return (
             <MapView
                 ref="map"
-                style={Styles.map}
+                style={Styles.content_wrapper}
                 mapType="standard"
                 region={this.state.region}
                 onRegionChange={(region) => this.onRegionChange(region)}

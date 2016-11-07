@@ -4,14 +4,14 @@
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
 * @Last modified by:   xavi
-* @Last modified time: 02-Nov-2016
+* @Last modified time: 05-Nov-2016
 */
 
 import React from 'react';
 import {View, Text, ScrollView, StyleSheet, TouchableHighlight, AsyncStorage} from 'react-native';
 import t from 'tcomb-form-native';
 import Styles from '../../Styles';
-import NavBar from '../Header/Header';
+import Header from '../Header/Header';
 import API from '../../Utils/Api';
 
 const TITLE = 'Profile';
@@ -22,7 +22,9 @@ const User = t.struct({
     email: t.String,
     changePassword: t.maybe(t.String)
 });
-const options = {};
+const options = {
+    auto: 'placeholders'
+};
 
 class Profile extends React.Component {
     constructor(props){
@@ -70,19 +72,22 @@ class Profile extends React.Component {
     render(){
         const USER = this.state.user;
         return (
-            <View style={Styles.mapContainer}>
-                <NavBar
+            <View style={Styles.wrapperContent}>
+                <Header
                     loadMainView={() => this.props.navigator.pop()}
                     title={TITLE}
-                    isLoading={this.state.isLoading}/>
-                <Form
-                    ref="form"
-                    type={User}
-                    options={options}
-                    value={USER} />
-                <TouchableHighlight style={styles.button} onPress={() => this.onPress()} underlayColor='#99d9f4'>
-                    <Text style={styles.buttonText}>Save</Text>
-                </TouchableHighlight>
+                    isLoading={this.state.isLoading} />
+                <View style={Styles.form_navContent}>
+                    <Text style={Styles.form_title}>Update your Profile</Text>
+                    <Form
+                        ref="form"
+                        type={User}
+                        options={options}
+                        value={USER} />
+                    <TouchableHighlight style={Styles.form_button} onPress={() => this.onPress()} underlayColor='#99d9f4'>
+                        <Text style={Styles.form_buttonText}>Save</Text>
+                    </TouchableHighlight>
+                </View>
             </View>
         );
     }
@@ -92,34 +97,5 @@ Profile.propTypes = {
     user: React.PropTypes.object.isRequired,
     navigator: React.PropTypes.object.isRequired
 };
-
-var styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-  title: {
-    fontSize: 30,
-    alignSelf: 'center',
-    marginBottom: 30
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
 
 export default Profile;

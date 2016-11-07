@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 04-Nov-2016
+* @Last modified time: 05-Nov-2016
 */
 
 import {StyleSheet, Dimensions} from 'react-native';
@@ -16,11 +16,6 @@ const TEXTCOLOR = '#262938';
 const BACKGROUND = '#f1f1f1';
 
 const styles = StyleSheet.create({
-    wrapperContent: {
-        flex:1,
-        flexDirection: 'column',
-        backgroundColor: 'white'
-    },
     error: {
         top:15,
         textAlign: 'center',
@@ -34,21 +29,32 @@ const styles = StyleSheet.create({
     form_wrapper: {
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: 'white',
+    },
+    form_navBar: {
+        flex: 1/7,
+        flexDirection: 'row',
+        backgroundColor: '#fafafa',
+    },
+    form_navContent: {
+        flex: 6/7,
+        flexDirection: 'column',
         justifyContent: 'center',
-        backgroundColor: BACKGROUND,
-        padding: 35
+        padding: 35,
+        marginBottom:45,
+        backgroundColor: 'white'
     },
     form_title: {
         fontWeight: '100',
         fontSize: 35,
         textAlign: 'center',
         color: TEXTCOLOR,
-        paddingBottom: 45
+        paddingBottom: 45,
     },
     form_button: {
         height: 45,
-        backgroundColor: SUBCOLOR,
-        borderColor: SUBCOLOR,
+        backgroundColor: TEXTCOLOR,
+        borderColor: TEXTCOLOR,
         borderWidth: 1,
         borderRadius: 25,
         marginTop: 10,
@@ -63,14 +69,14 @@ const styles = StyleSheet.create({
     },
     form_buttonPush: {
         position: 'absolute',
-        top: 20,
-        right: 20,
+        top: 17,
+        right: 10,
         width: 125,
     },
     form_buttonPop: {
         position: 'absolute',
-        top: 20,
-        left: 20,
+        top: 17,
+        left: 10,
         width: 120
     },
     form_buttonNav: {
@@ -82,14 +88,18 @@ const styles = StyleSheet.create({
         flex: 3/4,
         fontSize: 15,
         marginTop: 22,
-        textAlign: 'right'
+        textAlign: 'right',
+        fontWeight: '100',
+        color: TEXTCOLOR
     },
     form_buttonPopText: {
         top:1,
         flex: 3/4,
         fontSize: 15,
         marginTop: 22,
-        textAlign: 'left'
+        textAlign: 'left',
+        fontWeight: '100',
+        color: TEXTCOLOR
     },
     form_buttonImageWrapper: {
         flex: 1/4,
@@ -105,6 +115,58 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25,
     },
+
+    /**
+     * BODY WRAPPER
+     */
+     wrapperContent: {
+         flex:1,
+         flexDirection: 'column',
+         backgroundColor: 'white'
+     },
+
+     /**
+      * HEADER
+      */
+     header: {
+         flex: 1/8,
+         flexDirection: 'row',
+         backgroundColor: '#fafafa'
+     },
+     header_leftButton: {
+         flex: 1/4,
+         marginTop: 40,
+     },
+     header_imageMenu: {
+         width: 25,
+         height: 25,
+         marginLeft: 15
+     },
+     header_title: {
+         flex: 2/4,
+         marginTop: 42,
+         fontSize:16,
+         fontWeight: '100',
+         color: TEXTCOLOR,
+         textAlign: 'center'
+     },
+     header_rightButton: {
+         flex: 1/4,
+         marginTop: 40,
+     },
+     header_loader: {
+         marginLeft: 35
+     },
+
+     /**
+      * CONTENT
+      */
+      content_wrapper: {
+          flex: 7/8,
+          flexDirection: 'column',
+          justifyContent: 'center',
+      },
+
 
 
     buttonViewWrapper: {
@@ -125,36 +187,7 @@ const styles = StyleSheet.create({
         width:45,
         height:45
     },
-    header: {
-        flex: 1,
-        height: 75,
-        flexDirection: 'row',
-        backgroundColor: '#ffffff'
-    },
-    header_leftButton: {
-        flex: 1/4,
-        marginTop: 35,
-    },
-    header_imageMenu: {
-        width: 25,
-        height: 25,
-        marginLeft: 15
-    },
-    header_title: {
-        flex: 2/4,
-        marginTop: 38,
-        fontSize:16,
-        fontWeight: 'bold',
-        color: TEXTCOLOR,
-        textAlign: 'center'
-    },
-    header_rightButton: {
-        flex: 1/4,
-        marginTop: 38,
-    },
-    header_loader: {
-        marginLeft: 35
-    },
+
     content: {
         flex: 1,
         flexDirection: 'column',

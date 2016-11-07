@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 04-Nov-2016
+* @Last modified time: 05-Nov-2016
 */
 
 import React from 'react';
@@ -61,30 +61,34 @@ class SignUp extends React.Component {
     render(){
         return (
             <View style={Styles.form_wrapper}>
-                <TouchableHighlight
-                    style={Styles.form_buttonPop}
-                    onPress={() => this.props.navigator.pop()}
-                    underlayColor='transparent'>
-                    <View style={Styles.form_buttonNav}>
-                        <View style={Styles.form_buttonImageWrapper}>
-                            <Image
-                                style={Styles.form_buttonPopImage}
-                                source={require('../../Assets/back.png')} />
-                        </View>
-                        <Text style={Styles.form_buttonPopText}>Sign In</Text>
-                    </View>
-                </TouchableHighlight>
-                <Text style={Styles.form_title}>Register to Cookio</Text>
-                <Form
-                    ref="form"
-                    type={User}
-                    options={options} />
+                <View style={Styles.form_navBar}>
                     <TouchableHighlight
-                        style={Styles.form_button}
-                        onPress={() => this.onPress()}
-                        underlayColor='#99d9f4'>
-                        <Text style={Styles.form_buttonText}>Register</Text>
+                        style={Styles.form_buttonPop}
+                        onPress={() => this.props.navigator.pop()}
+                        underlayColor='transparent'>
+                        <View style={Styles.form_buttonNav}>
+                            <View style={Styles.form_buttonImageWrapper}>
+                                <Image
+                                    style={Styles.form_buttonPopImage}
+                                    source={require('../../Assets/back.png')} />
+                            </View>
+                            <Text style={Styles.form_buttonPopText}>Sign In</Text>
+                        </View>
                     </TouchableHighlight>
+                </View>
+                <View style={Styles.form_navContent}>
+                    <Text style={Styles.form_title}>Register to Cookio</Text>
+                    <Form
+                        ref="form"
+                        type={User}
+                        options={options} />
+                        <TouchableHighlight
+                            style={Styles.form_button}
+                            onPress={() => this.onPress()}
+                            underlayColor='#99d9f4'>
+                            <Text style={Styles.form_buttonText}>Register</Text>
+                        </TouchableHighlight>
+                </View>
             </View>
         );
     }

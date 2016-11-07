@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 01-Nov-2016
+* @Last modified time: 05-Nov-2016
 */
 
 import React from 'react';
