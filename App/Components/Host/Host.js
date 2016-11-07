@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 02-Nov-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
@@ -12,10 +12,18 @@ import {View, Text} from 'react-native';
 import Header from '../Header/Header';
 import Styles from '../../Styles';
 import Create from './Create';
+import List from './List';
 
-const TITLE = 'Cookio';
+const type = 'View';
 const components = {
-    'create': Create
+    create: {
+        name: Create,
+        title: 'Create a new Event'
+    },
+    list: {
+        name: List,
+        title: 'Your Events'
+    }
 };
 
 class Host extends React.Component {
@@ -23,7 +31,7 @@ class Host extends React.Component {
         super(props);
         this.state = {
             isLoading: false,
-            currentComponent: 'create'
+            currentComponent: 'list'
         };
     }
     renderComponent(value) {
@@ -37,12 +45,14 @@ class Host extends React.Component {
         this.setState({isLoading: !value});
     }
     render() {
-        const CurrentComponent = components[this.state.currentComponent];
+        const CurrentComponent = components[this.state.currentComponent].name;
+        const currentTitle = components[this.state.currentComponent].title;
         return (
             <View style={Styles.wrapperContent}>
                 <Header
                     toggleMenu={() => this.toggleMenu()}
-                    title={TITLE}
+                    type={type}
+                    title={currentTitle}
                     isLoading={this.state.isLoading} />
                     <CurrentComponent isLoaded={() => this.isLoaded(true)} />
             </View>

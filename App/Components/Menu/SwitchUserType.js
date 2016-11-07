@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 02-Nov-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
@@ -48,13 +48,13 @@ class SwitchUserType extends React.Component {
 
     render () {
         return(
-            <View style={Styles.itemMenu}>
+            <View style={Styles.menu_itemMenu}>
                 <Image
-                    style={Styles.itemIcon}
+                    style={Styles.menu_itemIcon}
                     source={require('../../Assets/switch.png')} />
                 <Text
                     onPress={() => this.switchUser()}
-                    style={Styles.item}>
+                    style={Styles.menu_item}>
                     {this.state.userText}
                 </Text>
             </View>

@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 05-Nov-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
@@ -12,6 +12,7 @@ import {View, Text, Image, StyleSheet, TouchableHighlight, AsyncStorage} from 'r
 import t from 'tcomb-form-native';
 import API from '../../Utils/Api';
 import Styles from '../../Styles';
+import Separator from '../Helpers/Separator';
 
 const Form = t.form.Form;
 const User = t.struct({
@@ -61,7 +62,7 @@ class SignUp extends React.Component {
     render(){
         return (
             <View style={Styles.form_wrapper}>
-                <View style={Styles.form_navBar}>
+                <View style={Styles.header}>
                     <TouchableHighlight
                         style={Styles.form_buttonPop}
                         onPress={() => this.props.navigator.pop()}
@@ -76,7 +77,7 @@ class SignUp extends React.Component {
                         </View>
                     </TouchableHighlight>
                 </View>
-                <View style={Styles.form_navContent}>
+                <View style={Styles.form_content}>
                     <Text style={Styles.form_title}>Register to Cookio</Text>
                     <Form
                         ref="form"
@@ -85,7 +86,7 @@ class SignUp extends React.Component {
                         <TouchableHighlight
                             style={Styles.form_button}
                             onPress={() => this.onPress()}
-                            underlayColor='#99d9f4'>
+                            underlayColor='#262938'>
                             <Text style={Styles.form_buttonText}>Register</Text>
                         </TouchableHighlight>
                 </View>

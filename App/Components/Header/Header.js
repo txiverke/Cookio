@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
 * @Last modified by:   xavi
-* @Last modified time: 01-Nov-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
@@ -13,11 +13,11 @@ import ButtonMenu from './ButtonMenu';
 import ButtonBack from './ButtonBack';
 import Style from '../../Styles';
 
-const Header = ({toggleMenu, title, loadMainView, isLoading}) => {
+const Header = ({toggleMenu, title, type, loadMainView, isLoading}) => {
     let leftButton;
-    if (title === 'Loading') {
+    if (type === 'Loading') {
         leftButton = <View style={Style.header_leftButton}></View>;
-    } else if (title === 'Cookio') {
+    } else if (type === 'View') {
         leftButton = <ButtonMenu toggleMenu={toggleMenu} />;
     } else {
         leftButton = <ButtonBack loadMainView={loadMainView}/>;
@@ -41,6 +41,7 @@ const Header = ({toggleMenu, title, loadMainView, isLoading}) => {
 Header.propTypes = {
     toggleMenu: React.PropTypes.func,
     title: React.PropTypes.string.isRequired,
+    type: React.PropTypes.string.isRequired,
     loadMainView: React.PropTypes.func,
     isLoading: React.PropTypes.bool.isRequired
 }

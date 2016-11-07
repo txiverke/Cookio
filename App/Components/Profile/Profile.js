@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
 * @Last modified by:   xavi
-* @Last modified time: 05-Nov-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
@@ -77,14 +77,17 @@ class Profile extends React.Component {
                     loadMainView={() => this.props.navigator.pop()}
                     title={TITLE}
                     isLoading={this.state.isLoading} />
-                <View style={Styles.form_navContent}>
+                <View style={Styles.form_content}>
                     <Text style={Styles.form_title}>Update your Profile</Text>
                     <Form
                         ref="form"
                         type={User}
                         options={options}
                         value={USER} />
-                    <TouchableHighlight style={Styles.form_button} onPress={() => this.onPress()} underlayColor='#99d9f4'>
+                    <TouchableHighlight
+                        style={Styles.form_button}
+                        onPress={() => this.onPress()}
+                        underlayColor='#262938'>
                         <Text style={Styles.form_buttonText}>Save</Text>
                     </TouchableHighlight>
                 </View>

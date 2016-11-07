@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 05-Nov-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import {StyleSheet, Dimensions} from 'react-native';
@@ -23,20 +23,13 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
 
-    /*
-     * FORM STYLES
-     */
+    /** FORM STYLES **/
     form_wrapper: {
         flex: 1,
         flexDirection: 'column',
         backgroundColor: 'white',
     },
-    form_navBar: {
-        flex: 1/7,
-        flexDirection: 'row',
-        backgroundColor: '#fafafa',
-    },
-    form_navContent: {
+    form_content: {
         flex: 6/7,
         flexDirection: 'column',
         justifyContent: 'center',
@@ -44,12 +37,19 @@ const styles = StyleSheet.create({
         marginBottom:45,
         backgroundColor: 'white'
     },
+    form_contentTop: {
+        flex: 6/7,
+        flexDirection: 'column',
+        padding: 35,
+        marginBottom:45,
+        backgroundColor: 'white'
+    },
     form_title: {
         fontWeight: '100',
-        fontSize: 35,
+        fontSize: 38,
         textAlign: 'center',
         color: TEXTCOLOR,
-        paddingBottom: 45,
+        paddingBottom: 25,
     },
     form_button: {
         height: 45,
@@ -116,22 +116,19 @@ const styles = StyleSheet.create({
         height: 25,
     },
 
-    /**
-     * BODY WRAPPER
-     */
+    /** BODY WRAPPER **/
      wrapperContent: {
          flex:1,
          flexDirection: 'column',
          backgroundColor: 'white'
      },
 
-     /**
-      * HEADER
-      */
+     /** HEADER **/
      header: {
-         flex: 1/8,
+         flex: 1/7,
          flexDirection: 'row',
-         backgroundColor: '#fafafa'
+         backgroundColor: '#fafafa',
+         height: 5
      },
      header_leftButton: {
          flex: 1/4,
@@ -158,14 +155,72 @@ const styles = StyleSheet.create({
          marginLeft: 35
      },
 
-     /**
-      * CONTENT
-      */
-      content_wrapper: {
-          flex: 7/8,
-          flexDirection: 'column',
-          justifyContent: 'center',
-      },
+     /** MENU **/
+     menu: {
+         flex: 1,
+         width: width,
+         height: height,
+         backgroundColor: TEXTCOLOR
+     },
+     menu_avatarWrapper: {
+         paddingTop: 35,
+         paddingLeft: 20,
+         paddingBottom: 20,
+         backgroundColor: '#232531'
+     },
+     menu_avatar: {
+          width: 48,
+          height: 48,
+          borderRadius: 24,
+          flex: 1,
+     },
+     menu_name: {
+          position: 'absolute',
+          left: 80,
+          top: 40,
+          color: '#f1f1f1',
+          fontSize: 16,
+          fontWeight: 'bold'
+     },
+     menu_email: {
+         position: 'absolute',
+         left: 80,
+         top: 60,
+         color: MAINCOLOR,
+         fontSize: 14,
+         fontStyle: 'italic'
+     },
+     menu_itemMenu: {
+         flex:1,
+         flexDirection: 'row',
+         justifyContent: 'flex-start',
+         height: 60
+     },
+     menu_item: {
+          fontSize: 17,
+          fontWeight: '300',
+          padding: 20,
+          color: '#f1f1f1',
+     },
+     menu_itemIcon: {
+         marginTop: 19,
+         marginLeft: 20,
+         width: 25,
+         height: 25
+     },
+
+     /** CONTENT **/
+     content_wrapper: {
+        top: 0,
+        flex: 6/7,
+        flexDirection: 'column',
+        justifyContent: 'center',
+     },
+     content_wrapperMap: {
+         top: 0,
+         flex: 19/20,
+         flexDirection: 'column'
+     },
 
 
 
@@ -344,14 +399,6 @@ const styles = StyleSheet.create({
        alignSelf: 'stretch',
        justifyContent: 'center'
    },
-   mapContainer: {
-       position: 'absolute',
-       top: 0,
-       left: 0,
-       right: 0,
-       bottom: 0,
-       justifyContent: 'flex-end',
-   },
    map: {
        position: 'absolute',
        top: 75,
@@ -359,58 +406,8 @@ const styles = StyleSheet.create({
        right: 0,
        bottom: 0,
    },
-   menu: {
-        flex: 1,
-        width: width,
-        height: height,
-        backgroundColor: TEXTCOLOR
-   },
-   avatarContainer: {
-       paddingTop: 35,
-       paddingLeft: 20,
-       paddingBottom: 20,
-       backgroundColor: '#232531'
-   },
-   avatar: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        flex: 1,
-   },
-   name: {
-        position: 'absolute',
-        left: 80,
-        top: 40,
-        color: '#f1f1f1',
-        fontSize: 16,
-        fontWeight: 'bold'
-   },
-   email: {
-       position: 'absolute',
-       left: 80,
-       top: 60,
-       color: MAINCOLOR,
-       fontSize: 14,
-       fontStyle: 'italic'
-   },
-   itemMenu: {
-       flex:1,
-       flexDirection: 'row',
-       justifyContent: 'flex-start',
-       height: 60
-   },
-   item: {
-        fontSize: 17,
-        fontWeight: '300',
-        padding: 20,
-        color: '#f1f1f1',
-   },
-   itemIcon: {
-       marginTop: 19,
-       marginLeft: 20,
-       width: 25,
-       height: 25
-   },
+
+
    separator: {
        height: 1,
        backgroundColor: '#e6e6e6',

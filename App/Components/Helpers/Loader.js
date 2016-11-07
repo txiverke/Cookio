@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 27-Oct-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
@@ -12,13 +12,14 @@ import {View, Text} from 'react-native';
 import Header from '../Header/Header.js';
 import Styles from '../../Styles';
 
-const TITLE = 'Loading...';
+const TITLE = 'Loading';
 
 const Loader = ({isLoading}) => {
     return (
         <View style={Styles.wrapperContent}>
             <Header
                 title={TITLE}
+                type = {TITLE}
                 isLoading={isLoading} />
          </View>
     );

@@ -4,26 +4,28 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 03-Nov-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, AsyncStorage } from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight, AsyncStorage} from 'react-native';
 import MapView from 'react-native-maps';
 import t from 'tcomb-form-native';
 import _ from 'lodash';
 import API from '../../Utils/Api';
-
-const Form = t.form.Form;
+import Styles from '../../Styles';
 
 let Stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 Stylesheet.textbox.normal.height = 100;
+
+const Form = t.form.Form;
 const Event = t.struct({
     title: t.String,
     description: t.String,
     price: t.String
 });
 const options = {
+    auto: 'placeholders',
     fields: {
         description: {
             stylesheet: Stylesheet,
@@ -62,47 +64,21 @@ class Create extends React.Component {
     render(){
         const EVENT = this.state.event;
         return (
-            <View style={styles.container}>
+            <View style={Styles.form_contentTop}>
                 <Form
                     ref="form"
                     type={Event}
                     options={options}
                     value={EVENT} />
-                <TouchableHighlight style={styles.button} onPress={() => this.onPress()} underlayColor='#99d9f4'>
-                    <Text style={styles.buttonText}>Save Event</Text>
+                <TouchableHighlight
+                    style={Styles.form_button}
+                    onPress={() => this.onPress()}
+                    underlayColor='#262938'>
+                    <Text style={Styles.form_buttonText}>Save Event</Text>
                 </TouchableHighlight>
             </View>
         );
     }
 }
-
-var styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    marginTop: 50,
-    padding: 20,
-    backgroundColor: '#ffffff',
-  },
-  title: {
-    fontSize: 30,
-    alignSelf: 'center',
-    marginBottom: 30
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 36,
-    backgroundColor: '#48BBEC',
-    borderColor: '#48BBEC',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
 
 export default Create;

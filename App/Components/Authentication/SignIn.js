@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 05-Nov-2016
+* @Last modified time: 07-Nov-2016
 */
 
 import React from 'react';
@@ -13,6 +13,7 @@ import t from 'tcomb-form-native';
 import API from '../../Utils/Api';
 import SignUp from './SignUp';
 import Styles from '../../Styles';
+import Separator from '../Helpers/Separator';
 
 const Form = t.form.Form;
 const User = t.struct({
@@ -62,7 +63,7 @@ class SignIn extends React.Component {
     render() {
         return (
             <View style={Styles.form_wrapper}>
-                <View style={Styles.form_navBar}>
+                <View style={Styles.header}>
                     <TouchableHighlight
                         style={Styles.form_buttonPush}
                         onPress={() => this.props.navigator.push({name: 'SignUp'})}
@@ -77,12 +78,9 @@ class SignIn extends React.Component {
                         </View>
                     </TouchableHighlight>
                 </View>
-                <View style={Styles.form_navContent}>
+                <View style={Styles.form_content}>
                     <Text style={Styles.form_title}>Sign In to Cookio</Text>
-                    <Form
-                        ref="form"
-                        type={User}
-                        options={options} />
+                    <Form ref="form" type={User} options={options} />
                     <TouchableHighlight
                         style={Styles.form_button}
                         onPress={() => this.onPress()}
