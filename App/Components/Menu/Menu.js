@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 08-Nov-2016
 */
 
 import React from 'react';
@@ -40,6 +40,9 @@ class Menu extends React.Component {
                     <Text style={Styles.menu_email}>{USER.email}</Text>
                 </View>
                 <Separator />
+                <SwitchUserType
+                    switchUser={(value) => this.switchUser(value)}
+                    userType={USER.type} />
                 <View style={Styles.menu_itemMenu}>
                     <Image
                         style={Styles.menu_itemIcon}
@@ -80,9 +83,6 @@ class Menu extends React.Component {
                         {HISTORY}
                     </Text>
                 </View>
-                <SwitchUserType
-                    switchUser={(value) => this.switchUser(value)}
-                    userType={USER.type} />
                 <View style={Styles.menu_itemMenu}>
                     <Image
                         style={Styles.menu_itemIcon}

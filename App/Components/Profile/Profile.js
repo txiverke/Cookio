@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: oocss.js
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 08-Nov-2016
 */
 
 import React from 'react';
@@ -14,7 +14,8 @@ import Styles from '../../Styles';
 import Header from '../Header/Header';
 import API from '../../Utils/Api';
 
-const TITLE = 'Profile';
+const type = 'View';
+const TITLE = 'Update Profile';
 const Form = t.form.Form;
 const User = t.struct({
     firstName: t.String,
@@ -75,6 +76,7 @@ class Profile extends React.Component {
             <View style={Styles.wrapperContent}>
                 <Header
                     loadMainView={() => this.props.navigator.pop()}
+                    type={type}
                     title={TITLE}
                     isLoading={this.state.isLoading} />
                 <View style={Styles.form_content}>

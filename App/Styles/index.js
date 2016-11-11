@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 10-Nov-2016
 */
 
 import {StyleSheet, Dimensions} from 'react-native';
@@ -33,16 +33,17 @@ const styles = StyleSheet.create({
         flex: 6/7,
         flexDirection: 'column',
         justifyContent: 'center',
-        padding: 35,
         marginBottom:45,
         backgroundColor: 'white'
     },
     form_contentTop: {
         flex: 6/7,
         flexDirection: 'column',
-        padding: 35,
         marginBottom:45,
         backgroundColor: 'white'
+    },
+    form_contentWrapper: {
+        padding: 20,
     },
     form_title: {
         fontWeight: '100',
@@ -221,8 +222,31 @@ const styles = StyleSheet.create({
          flex: 19/20,
          flexDirection: 'column'
      },
+     content_wrapperMapForm: {
+         top: 0,
+         height: 200,
+     },
 
-
+     /** EVENT ITEM **/
+     event: {
+         flex: 1,
+         flexDirection: 'row',
+         borderRadius: 5,
+         borderColor: BACKGROUND,
+         borderWidth: 1,
+         marginBottom: 15
+     },
+     event_content: {
+         flex: 3/4,
+         padding: 10
+     },
+     event_title: {
+         fontSize: 17
+     },
+     event_buttons: {
+         flex: 1/4,
+         flexDirection: 'column'
+     },
 
     buttonViewWrapper: {
         position: 'absolute',

@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 08-Nov-2016
 */
 
 import React from 'react';
@@ -33,7 +33,6 @@ class Map extends React.Component {
     }
 
     componentDidMount() {
-        this.props.isLoaded(false);
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
@@ -44,6 +43,7 @@ class Map extends React.Component {
                         longitudeDelta: MAPCONSTANTS.longitudeDelta
                     }
                 });
+                this.props.isLoading(false);
             },
             (error) => alert(JSON.stringify(error)),
             {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
@@ -59,8 +59,6 @@ class Map extends React.Component {
                 };
             this.onRegionChange(newRegion);
         });
-
-        this.props.isLoaded(true);
     }
 
     componentWillUnmount() {
@@ -72,14 +70,13 @@ class Map extends React.Component {
     }
 
     onMarkerPressed(id) {
-        this.props.isLoaded(false);
+        this.props.isLoading(false);
         Api.getHost(id)
             .then((res) => {
                 this.props.navigator.push({
                     name: 'Host',
                     passProps: {host: res}
                 });
-                this.props.isLoaded(true);
                 navigator.geolocation.clearWatch(this.watchID);
             });
     }
@@ -94,11 +91,12 @@ class Map extends React.Component {
                 onRegionChange={(region) => this.onRegionChange(region)}
                 showsUserLocation = {true}>
                 {this.state.markers.map((marker, index) => (
-                <MapView.Marker
-                    key={index}
-                    coordinate={marker.coordinate}
-                    onSelect={() => this.onMarkerPressed(marker.id)} />
-                ))}
+                    <MapView.Marker
+                        key={index}
+                        coordinate={marker.coordinate}
+                        onSelect={() => this.onMarkerPressed(marker.id)} />
+                    ))
+                }
                 <ButtonCenterMap onRegionChange={(region) => this.onRegionChange(region)} />
             </MapView>
         );
@@ -106,7 +104,7 @@ class Map extends React.Component {
 }
 
 Map.propTypes = {
-    isLoaded: React.PropTypes.func.isRequired
+    isLoading: React.PropTypes.func.isRequired
 };
 
 export default Map;

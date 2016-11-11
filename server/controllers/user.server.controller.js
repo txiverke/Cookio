@@ -56,11 +56,12 @@ exports.signin = (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    User.findOne({username},
+    User.findOne({username: username},
         (err, user) => {
             if (err || !user || !user.authenticate(password) ) {
                 console.log('err', err);
                 console.log('user', user.password);
+                console.log('pass', req.body.password)
                 console.log('pass', user.hashPassword(req.body.password))
                 res.status(404).json({
                     message: err,
@@ -81,11 +82,12 @@ exports.read = (req, res) => {
 };
 
 exports.update = (req, res) => {
-
+    console.log(req.body)
     const user = req.user;
     user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
     user.email = req.body.email;
+    console.log('req.body.password', req.body.password)
     user.password = req.body.password ? user.hashPassword(req.body.password) : user.password;
     user.type = (req.body.type === undefined) ? req.user.type : req.body.type;
 

@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 09-Nov-2016
 */
 
 import React from 'react';
@@ -78,17 +78,19 @@ class SignUp extends React.Component {
                     </TouchableHighlight>
                 </View>
                 <View style={Styles.form_content}>
-                    <Text style={Styles.form_title}>Register to Cookio</Text>
-                    <Form
-                        ref="form"
-                        type={User}
-                        options={options} />
+                    <View style={Styles.form_contentWrapper}>
+                        <Text style={Styles.form_title}>Register to Cookio</Text>
+                        <Form
+                            ref="form"
+                            type={User}
+                            options={options} />
                         <TouchableHighlight
                             style={Styles.form_button}
                             onPress={() => this.onPress()}
                             underlayColor='#262938'>
                             <Text style={Styles.form_buttonText}>Register</Text>
                         </TouchableHighlight>
+                    </View>
                 </View>
             </View>
         );

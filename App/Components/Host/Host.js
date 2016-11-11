@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 09-Nov-2016
 */
 
 import React from 'react';
@@ -13,6 +13,7 @@ import Header from '../Header/Header';
 import Styles from '../../Styles';
 import Create from './Create';
 import List from './List';
+import API from '../../Utils/Api';
 
 const type = 'View';
 const components = {
@@ -22,7 +23,7 @@ const components = {
     },
     list: {
         name: List,
-        title: 'Your Events'
+        title: 'Events created'
     }
 };
 
@@ -30,21 +31,47 @@ class Host extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: false,
+            events: [],
+            isLoading: true,
             currentComponent: 'list'
         };
     }
-    renderComponent(value) {
-        console.log('value', value)
-        this.setState({currentComponent: value});
+
+    componentDidMount() {
+        this.getEventsList();
     }
+
+    getEventsList() {
+        const id = this.props.user._id;
+        const url = `api/events/list/${id}`;
+        API.get(url).then((res) => {
+            if (res.success) {
+                this.setState({
+                    events: res.events,
+                    isLoading: false
+                });
+            } else {
+                console.log(res)
+            }
+            this.setState({ isLoading: false });
+        });
+    }
+
+    renderComponent(value) {
+        this.getEventsList();
+        this.setState({ currentComponent: value });
+    }
+
     toggleMenu() {
         this.props.toggleMenu();
     }
 
-    isLoaded(value) {
-        this.setState({isLoading: !value});
+    setLoader(value) {
+        this.setState({
+            isLoading: value
+        });
     }
+
     render() {
         const CurrentComponent = components[this.state.currentComponent].name;
         const currentTitle = components[this.state.currentComponent].title;
@@ -55,12 +82,19 @@ class Host extends React.Component {
                     type={type}
                     title={currentTitle}
                     isLoading={this.state.isLoading} />
-                    <CurrentComponent
-                        isLoaded={() => this.isLoaded(true)}
-                        createEvent={(value) => this.renderComponent(value)}/>
+                <CurrentComponent
+                    hostId={this.props.user._id}
+                    events={this.state.events}
+                    isLoading={(value) => this.setLoader(value) }
+                    loadComponent={(value) => this.renderComponent(value)}
+                />
             </View>
         );
     }
 }
+
+Host.propTypes = {
+    user: React.PropTypes.object.isRequired,
+};
 
 export default Host;

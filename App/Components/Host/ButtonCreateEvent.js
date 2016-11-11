@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 08-Nov-2016
 */
 
 import React from 'react';
@@ -15,7 +15,7 @@ const CREATEEVENT = require('../../Assets/create.png');
 
 class ButtonCreateEvent extends React.Component {
     createEvent() {
-        this.props.createEvent();
+        this.props.loadComponent();
     }
     render() {
         return (
@@ -32,7 +32,7 @@ class ButtonCreateEvent extends React.Component {
 }
 
 React.propTypes = {
-    createEvent: React.PropTypes.func.isRequired
+    loadComponent: React.PropTypes.func.isRequired
 };
 
 export default ButtonCreateEvent;

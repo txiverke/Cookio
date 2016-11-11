@@ -4,31 +4,40 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 09-Nov-2016
 */
 
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, ScrollView, Text} from 'react-native';
 import Styles from '../../Styles';
 import ButtonCreateEvent from './ButtonCreateEvent';
+import Event from './Event';
 
 class List extends React.Component {
-    createEvent(){
-        this.props.createEvent('create');
+    loadComponent(){
+        this.props.loadComponent('create');
     }
     render() {
+        const EVENTS = this.props.events;
         return (
-            <View style={Styles.form_contentTop}>
-                <Text>List</Text>
-                <ButtonCreateEvent
-                    createEvent={() => this.createEvent()}/>
+            <View style={Styles.form_wrapper}>
+                <View style={Styles.form_contentWrapper}>
+                    <ScrollView style={Styles.form_contentTop}>
+                        {EVENTS.map((event, index) => (
+                            <Event key={index} data={event} />
+                            ))
+                        }
+                    </ScrollView>
+                </View>
+                <ButtonCreateEvent loadComponent={() => this.loadComponent()}/>
             </View>
         );
     }
 }
 
 ButtonCreateEvent.propTypes = {
-    createEvent: React.PropTypes.func.isRequired
+    events: React.PropTypes.array,
+    loadComponent: React.PropTypes.func.isRequired,
 };
 
 export default List;

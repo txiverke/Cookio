@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 09-Nov-2016
 */
 
 import React from 'react';
@@ -17,14 +17,8 @@ import Styles from '../../Styles';
 
 const type = 'View';
 const components = {
-    map: {
-        name: Map,
-        title: 'Event\'s Map'
-    },
-    list: {
-        name: List,
-        title: 'List of Events'
-    }
+    map: { name: Map, title: 'Event\'s Map'},
+    list: { name: List, title: 'List of Events'}
 };
 
 class Guest extends React.Component {
@@ -37,15 +31,20 @@ class Guest extends React.Component {
     }
 
     renderComponent(value) {
-        this.setState({currentComponent: value});
-    }
-
-    isLoaded(value) {
-        this.setState({isLoading: !value});
+        this.setState({
+            isLoading: true,
+            currentComponent: value
+        });
     }
 
     toggleMenu() {
         this.props.toggleMenu();
+    }
+
+    setLoader(value) {
+        this.setState({
+            isLoading: value
+        });
     }
 
     render() {
@@ -58,7 +57,7 @@ class Guest extends React.Component {
                     type={type}
                     title={currentTitle}
                     isLoading={this.state.isLoading} />
-                <CurrentComponent isLoaded={(value) => this.isLoaded(value)} />
+                <CurrentComponent isLoading={(value) => this.setLoader(value)}/>
                 <ButtonSwitchComponent
                     currentComponent={this.state.currentComponent}
                     renderComponent={(value) => this.renderComponent(value)} />
@@ -67,5 +66,9 @@ class Guest extends React.Component {
     }
 
 }
+
+Guest.propTypes = {
+    toogleMenu: React.PropTypes.func
+};
 
 export default Guest;

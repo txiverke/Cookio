@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 03-Nov-2016
+* @Last modified time: 08-Nov-2016
 */
 
 const mongoose = require('mongoose');
@@ -41,10 +41,8 @@ const EventSchema = new Schema({
        type: Date
     },
     creator: {
-        type: Schema.ObjectId,
-        ref: 'User'
-    },
-    creator_name: String
+        type: String
+    }
 });
 
 mongoose.model('Event', EventSchema);

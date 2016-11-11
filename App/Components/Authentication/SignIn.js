@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 09-Nov-2016
 */
 
 import React from 'react';
@@ -24,7 +24,10 @@ const options = {
     auto: 'placeholders',
     fields: {
         username: {},
-        password: {}
+        password: {
+            password: true,
+            secureTextEntry: true
+        }
     }
 };
 
@@ -79,15 +82,17 @@ class SignIn extends React.Component {
                     </TouchableHighlight>
                 </View>
                 <View style={Styles.form_content}>
-                    <Text style={Styles.form_title}>Sign In to Cookio</Text>
-                    <Form ref="form" type={User} options={options} />
-                    <TouchableHighlight
-                        style={Styles.form_button}
-                        onPress={() => this.onPress()}
-                        underlayColor='#262938'>
-                        <Text style={Styles.form_buttonText}>Sign In</Text>
-                    </TouchableHighlight>
-                    <Text style={Styles.error}>{this.state.message}</Text>
+                    <View style={Styles.form_contentWrapper}>
+                        <Text style={Styles.form_title}>Sign In to Cookio</Text>
+                        <Form ref="form" type={User} options={options} />
+                        <TouchableHighlight
+                            style={Styles.form_button}
+                            onPress={() => this.onPress()}
+                            underlayColor='#262938'>
+                            <Text style={Styles.form_buttonText}>Sign In</Text>
+                        </TouchableHighlight>
+                        <Text style={Styles.error}>{this.state.message}</Text>
+                    </View>
                 </View>
             </View>
         );

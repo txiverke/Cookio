@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 09-Nov-2016
 */
 
 import React from 'react';
@@ -18,11 +18,13 @@ class List extends React.Component {
         this.state = {};
     }
     componentDidMount() {
-
+        this.props.isLoading(false);
     }
+
     createEvent(){
         this.props.createEvent('list');
     }
+
     render() {
         return (
             <View style={Styles.wrapperContent}>
