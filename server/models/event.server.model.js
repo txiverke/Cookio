@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 08-Nov-2016
+* @Last modified time: 11-Nov-2016
 */
 
 const mongoose = require('mongoose');
@@ -35,9 +35,9 @@ const EventSchema = new Schema({
     longitude: String,
     state: {
         type: String,
-        enum: ['Open', 'Active', 'Closed']
+        enum: ['Active', 'Closed']
     },
-    activity_date: {
+    event_date: {
        type: Date
     },
     creator: {

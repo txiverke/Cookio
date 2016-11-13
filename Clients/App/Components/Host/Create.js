@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 09-Nov-2016
+* @Last modified time: 11-Nov-2016
 */
 
 import React from 'react';
@@ -22,9 +22,10 @@ Stylesheet.textbox.normal.height = 100;
 const MAPCONSTANTS = Constants.getMapConstants();
 const Form = t.form.Form;
 const Event = t.struct({
+    event_date: t.Date,
     title: t.String,
     description: t.String,
-    price: t.String
+    price: t.String,
 });
 const options = {
     auto: 'placeholders',
@@ -32,6 +33,10 @@ const options = {
         description: {
             stylesheet: Stylesheet,
             multiline: true
+        },
+        event_date: {
+            label: 'Select the Event\'s date',
+            minimumDate: new Date()
         }
     }
 };
@@ -52,15 +57,19 @@ class Create extends React.Component {
         this.props.isLoading(true);
         const formData = this.refs.form.getValue();
 
+        console.log('formData', formData)
+
         if (formData) {
             const url = 'api/events';
             const value = {
                 title: formData.title.trim(),
                 description: formData.description.trim(),
                 price: formData.price.trim(),
+                event_date: Date(formData.date),
+                state: 'Active',
                 creator: this.props.hostId
             };
-
+            console.log('value', value)
             API.post(url, value).then((res) => {
                 if (res.success) {
                     this.props.loadComponent('list');

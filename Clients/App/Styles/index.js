@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 10-Nov-2016
+* @Last modified time: 11-Nov-2016
 */
 
 import {StyleSheet, Dimensions} from 'react-native';
@@ -239,6 +239,11 @@ const styles = StyleSheet.create({
      event_content: {
          flex: 3/4,
          padding: 10
+     },
+     event_date: {
+        fontSize:12,
+        fontStyle: 'italic',
+        color: MAINCOLOR
      },
      event_title: {
          fontSize: 17

@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 09-Nov-2016
+* @Last modified time: 11-Nov-2016
 */
 
 const Event = require('mongoose').model('Event');
@@ -12,6 +12,8 @@ const Event = require('mongoose').model('Event');
 exports.create = (req, res) => {
 
     const event = new Event(req.body);
+
+    console.log('event', event)
 
     event.save((err) => {
         if (err) {
