@@ -48,10 +48,14 @@ module.exports = () => {
     app.use(passport.initialize());
     app.use(passport.session());
 
+    app.set('views', './server/views');
+    app.set('view engine', 'ejs');
+
+    require('../routes/index.server.routes.js')(app);
     require('../routes/user.server.route.js')(app);
     require('../routes/event.server.route.js')(app);
 
-    app.use("./public", express.static(path.join(__dirname, 'public')));
+    app.use(express.static('./public'));
 
     return app;
 };

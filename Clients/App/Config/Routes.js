@@ -3,8 +3,8 @@
 * @Date:   18-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 25-Oct-2016
+* @Last modified by:   xavi
+* @Last modified time: 14-Nov-2016
 */
 
 import React from 'react';
@@ -20,7 +20,6 @@ import Host from '../Components/Host/Host';
 
 const Routes = {
     renderScene(route, navigator) {
-        console.log('route', route)
         switch(route.name) {
             case 'Init': return <App />;
             case 'SignIn': return <SignIn navigator={navigator} {...route.passProps} />;
