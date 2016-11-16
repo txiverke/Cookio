@@ -4,8 +4,20 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 14-Nov-2016
+* @Last modified time: 15-Nov-2016
 */
 
+import React from 'react';
+import { Route, IndexRoute } from 'react-router';
+import Main from '../Components/Main';
+import Dashboard from '../Components/Dashboard';
+import SignIn from '../Components/Authentication/SignIn';
+import SignUp from '../Components/Authentication/SignUp';
 
-
+export default (
+    <Route path="/" component={Main}>
+        <Route path="/sign-in" component={SignIn} />
+        <Route path="/sign-up" component={SignUp} />
+        <IndexRoute component={Dashboard} />
+    </Route>
+);

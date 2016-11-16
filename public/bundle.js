@@ -55,11 +55,11 @@
 
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
 	var _reactDom=__webpack_require__(34);var _reactDom2=_interopRequireDefault(_reactDom);
-	var _reactRouter=__webpack_require__(172);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
-
+	var _reactRouter=__webpack_require__(172);
+	var _routes=__webpack_require__(227);var _routes2=_interopRequireDefault(_routes);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 	_reactDom2.default.render(
-	_react2.default.createElement(_reactRouter.Router,{history:_reactRouter.hashHistory},routes),
+	_react2.default.createElement(_reactRouter.Router,{history:_reactRouter.hashHistory},_routes2.default),
 	document.getElementById('app'));
 
 /***/ },
@@ -26345,6 +26345,181 @@
 	  });
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports,"__esModule",{value:true});
+
+
+
+
+
+
+
+
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
+	var _reactRouter=__webpack_require__(172);
+	var _Main=__webpack_require__(228);var _Main2=_interopRequireDefault(_Main);
+	var _Dashboard=__webpack_require__(230);var _Dashboard2=_interopRequireDefault(_Dashboard);
+	var _SignIn=__webpack_require__(231);var _SignIn2=_interopRequireDefault(_SignIn);
+	var _SignUp=__webpack_require__(232);var _SignUp2=_interopRequireDefault(_SignUp);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
+
+
+	_react2.default.createElement(_reactRouter.Route,{path:'/',component:_Main2.default},
+	_react2.default.createElement(_reactRouter.Route,{path:'/sign-in',component:_SignIn2.default}),
+	_react2.default.createElement(_reactRouter.Route,{path:'/sign-up',component:_SignUp2.default}),
+	_react2.default.createElement(_reactRouter.IndexRoute,{component:_Dashboard2.default}));
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports,"__esModule",{value:true});
+
+
+
+
+
+
+
+
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
+	var _Header=__webpack_require__(229);var _Header2=_interopRequireDefault(_Header);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+
+	var Main=function Main(_ref){var history=_ref.history;var children=_ref.children;
+	return(
+	_react2.default.createElement('div',{className:'main-wrapper'},
+	_react2.default.createElement(_Header2.default,null),
+	_react2.default.createElement('div',{className:'wrapper'},
+	children)));
+
+
+
+	};exports.default=
+
+	Main;
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports,"__esModule",{value:true});
+
+
+
+
+
+
+
+
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
+	var _reactRouter=__webpack_require__(172);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+
+	var Header=function Header(){
+	return(
+	_react2.default.createElement('header',{className:'header'},
+	_react2.default.createElement(_reactRouter.Link,{to:'/',className:'header-logo'},
+	_react2.default.createElement('img',{src:'./assets/logo.png',alt:'Cookio Logo'})),
+
+	_react2.default.createElement('nav',{className:'header-navWrapper',role:'navigation'},
+	_react2.default.createElement('ul',{className:'header-navItems'},
+	_react2.default.createElement('li',{className:'header-navItem'},
+	_react2.default.createElement(_reactRouter.Link,{to:'/sign-in'},'Sign In')),
+
+	_react2.default.createElement('li',{className:'header-navItem'},
+	_react2.default.createElement(_reactRouter.Link,{to:'/sign-up'},'Sign Up'))))));
+
+
+
+
+
+	};exports.default=
+
+	Header;
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+
+
+
+
+
+
+
+
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
+
+
+	Dashboard=function(_React$Component){_inherits(Dashboard,_React$Component);function Dashboard(){_classCallCheck(this,Dashboard);return _possibleConstructorReturn(this,(Dashboard.__proto__||Object.getPrototypeOf(Dashboard)).apply(this,arguments));}_createClass(Dashboard,[{key:"render",value:function render()
+	{
+	return(
+	_react2.default.createElement("figure",{className:"image-slider"},
+	_react2.default.createElement("img",{src:"./assets/bg_1.jpg",alt:"Cookio Experience"})));
+
+
+	}}]);return Dashboard;}(_react2.default.Component);exports.default=
+
+
+	Dashboard;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+
+
+
+
+
+
+
+
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
+
+	SignIn=function(_React$Component){_inherits(SignIn,_React$Component);function SignIn(){_classCallCheck(this,SignIn);return _possibleConstructorReturn(this,(SignIn.__proto__||Object.getPrototypeOf(SignIn)).apply(this,arguments));}_createClass(SignIn,[{key:'render',value:function render()
+	{
+	return(
+	_react2.default.createElement('div',null,
+	_react2.default.createElement('h1',null,'SIGN IN')));
+
+
+	}}]);return SignIn;}(_react2.default.Component);exports.default=
+
+
+	SignIn;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+
+
+
+
+
+
+
+
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
+
+	SignUp=function(_React$Component){_inherits(SignUp,_React$Component);function SignUp(){_classCallCheck(this,SignUp);return _possibleConstructorReturn(this,(SignUp.__proto__||Object.getPrototypeOf(SignUp)).apply(this,arguments));}_createClass(SignUp,[{key:'render',value:function render()
+	{
+	return(
+	_react2.default.createElement('div',null,
+	_react2.default.createElement('h1',null,'SIGN UP')));
+
+
+	}}]);return SignUp;}(_react2.default.Component);exports.default=
+
+
+	SignUp;
 
 /***/ }
 /******/ ]);

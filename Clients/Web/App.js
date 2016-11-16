@@ -4,15 +4,15 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 14-Nov-2016
+* @Last modified time: 15-Nov-2016
 */
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, hashHistory, browserHistory} from 'react-router';
-//import routes from './config/routes';
+import { Router, hashHistory, browserHistory } from 'react-router';
+import routes from './config/routes';
 
 ReactDOM.render(
-    <Router history={hashHistory∫}>{routes}</Router>,
+    <Router history={hashHistory}>{routes}</Router>,
     document.getElementById('app')
 );

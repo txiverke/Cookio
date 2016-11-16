@@ -1,0 +1,31 @@
+// @Author: Vilà Albiol, Xavi <xavi>
+// @Date:   15-Nov-2016
+// @Email:  txiverke@gmail.com
+// @Project: Cookio
+// @Last modified by:   xavi
+// @Last modified time: 16-Nov-2016
+
+.header{
+    display: flex;
+    flex-direction: row;
+    background: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    .header-logo {
+        margin: 0;
+        img{
+
+        }
+    }
+    .header-navWrapper {
+        margin-left: auto;
+        .header-navItems {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            .header-navItem {
+            }
+        }
+    }
+}

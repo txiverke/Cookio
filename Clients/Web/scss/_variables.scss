@@ -1,0 +1,50 @@
+// @Author: Vilà Albiol, Xavi <xavi>
+// @Date:   14-Nov-2016
+// @Email:  txiverke@gmail.com
+// @Project: Cookio
+// @Last modified by:   xavi
+// @Last modified time: 15-Nov-2016
+
+/*
+ * Colors Palette
+ */
+$mainColor: #4ECDC4;
+$secondColor: #ff3366;
+$textColor: #262938;
+$titleColor: #848b8d;
+$textError: #FF6B6B;
+$pad: 15px;
+
+/*
+ * Screen Sizes
+ */
+$widthDesktopBigger:1680px;
+$widthDesktopLarge: 1224px;
+$widthDesktop: 1024px;
+$widthTablet: 768px;
+$widthPhone: 480px;
+
+/*
+ * Z-index values
+ */
+$z-index-base : 0;
+$z-index-1 : 1;
+$z-index-10 : 10;
+$z-index-100 : 100;
+$z-index-101 : 101;
+$z-index-102 : 102;
+$z-index-103 : 103;
+
+/*
+ * Default Sizes
+ */
+$tiny: 0.7rem;
+$smallest: 0.8rem;
+$small: 0.9rem;
+$normal: 1rem;
+$big: 1.1rem;
+$bigger: 1.2rem;
+$biggest: 1.5rem;
+$huge: 2rem;
+$huger: 2.7rem;
+$iconSize: 5rem;
