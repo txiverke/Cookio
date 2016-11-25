@@ -4,21 +4,73 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 15-Nov-2016
+* @Last modified time: 25-Nov-2016
 */
 
 import React from 'react';
 import Header from './Header/Header';
 
-const Main = ({history, children}) => {
-    return (
-        <div className="main-wrapper">
-            <Header />
-            <div className="wrapper">
-                {children}
-            </div>
-        </div>
-    );
-};
+function getSize() {
+    return {
+        w: window.innerWidth,
+        h: window.innerHeight
+    };
+}
+
+class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { user: false };
+        this.onResize = this.onResize.bind(this);
+        this.updateDimensions = this.updateDimensions.bind(this);
+    }
+
+    componentDidMount() {
+        this.updateDimensions();
+        if(typeof window !== 'undefined') {
+            window.addEventListener('resize', this.onResize, false);
+        }
+    }
+
+    componentWillUnmount() {
+        if(typeof window !== 'undefined') {
+            window.removeEventListener('resize', this.onResize);
+        }
+    }
+
+    updateDimensions() {
+        const windowSize = getSize();
+        this.setState({
+            windowWidth: windowSize.w,
+            windowHeigth: windowSize.h
+        });
+    }
+
+    onResize() {
+        if (this.rqf) return;
+        if(typeof window !== 'undefined') {
+            this.rqf = window.requestAnimationFrame(() => {
+                this.rqf = null;
+                this.updateDimensions();
+            });
+         }
+     }
+
+     render() {
+         const windowWidth = this.state.windowWidth;
+         const user = this.state.user;
+         return (
+             <div className="">
+                 <Header
+                     windowWidth={windowWidth}
+                     user={user}
+                 />
+                 <section className="">
+                     {this.props.children}
+                 </section>
+             </div>
+         );
+     }
+}
 
 export default Main;

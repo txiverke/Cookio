@@ -4,18 +4,29 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 16-Nov-2016
+* @Last modified time: 23-Nov-2016
 */
 
 import React from 'react';
-
+import Slider from 'react-image-slider';
 
 class Dashboard extends React.Component {
     render(){
+        const images = [
+            './assets/bg_1.jpg',
+            './assets/bg_2.jpg',
+            './assets/bg_3.jpg',
+            './assets/bg_4.jpg'
+        ];
         return (
-            <figure className="image-slider">
-                <img src="./assets/bg_1.jpg" alt="Cookio Experience" />
-            </figure>
+            <div>
+                <Slider
+                    images={images}
+                    isInfinite={true}
+                    delay={10000}
+                />
+                <h1>Dashboard</h1>
+            </div>
         );
     }
 }
