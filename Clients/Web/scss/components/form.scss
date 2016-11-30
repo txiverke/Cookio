@@ -1,0 +1,250 @@
+// @Author: Vilà Albiol, Xavi <xavi>
+// @Date:   29-Nov-2016
+// @Email:  txiverke@gmail.com
+// @Project: Cookio
+// @Last modified by:   xavi
+// @Last modified time: 29-Nov-2016
+
+.form {
+  position: relative;
+  margin: 0 auto;
+  .field {
+    @include borderBox;
+    width: 100%;
+    margin-bottom: 15px;
+    > .g-recaptcha {
+      > div > div {
+        margin: 0 auto;
+      }
+    }
+    &.field-figure{
+      border-bottom: none;
+    }
+    > .field-background{
+      max-width: 600px;
+      position: relative;
+      display: block;
+      margin: 0 auto 15px;
+      height: 180px;
+      overflow: hidden;
+      > img {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+      }
+    }
+    >.field-empty-background{
+      max-width: 600px;
+      border: 1px solid #f1f1f1;
+      background: white;
+      height: 180px;
+      margin-bottom: 15px;
+      > p {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        text-align: center;
+        color: #cccccc;
+        margin: 0;
+        padding: 0;
+        font-size: $small;
+      }
+    }
+    > .field-avatar{
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      width: 125px;
+      height: 125px;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+      > img{
+        position: absolute;
+        width: 125px;
+        height: auto;
+        top: 0;
+      }
+    }
+    > .field-input, > .field-label {
+      position: relative;
+      width: 100%;
+
+      &.field-label {
+        display: block;
+        margin-bottom: 3px;
+        label {
+          font-family: 'Bold';
+          font-size: 0.9rem;
+          color: $titleColor;
+        }
+      }
+      &.field-input {
+        md-datepicker,
+        md-select{
+          width: 100% !important;
+          @include borderRadius(2px);
+          font-size: 0.9em;
+          border: 1px solid #dddddd;
+          margin-top: 0;
+          background: #fefefe;
+          button{
+            &.md-icon-button{
+              height: 36px;
+              line-height: 36px;
+              width: 36px;
+            }
+          }
+          .md-select-value{
+            border-bottom: none !important;
+          }
+          .md-datepicker-input-container{
+            position: absolute;
+            right: 10px;
+            top: 1px;
+            border-bottom: none !important ;
+            button{
+              top: 9px;
+            }
+          }
+        }
+        md-select{
+          padding: 1px 5px 5px;
+          margin-bottom: 10px;
+          .md-select-placeholder,
+          .md-select-value{
+            font-size: $smallest;
+            color: #fafafa !important;
+            .md-select-icon {
+              color: darken($textColor, 10%);
+            }
+          }
+          &.grey{
+            .md-select-placeholder{
+              font-size: $small;
+              color: #999999 !important;
+            }
+            .md-select-value{
+              font-size: $small;
+              color: $textColor !important;
+              .md-select-icon {
+                font-size: $smallest !important;
+                color: darken(#cccccc, 10%);
+              }
+            }
+          }
+          &.dark{
+            border: 1px solid darken($textColor, 10%);
+            background: $textColor;
+            color: white;
+          }
+        }
+        &.field-input-button{
+          input{
+            float: left;
+            width: 72%;
+          }
+        }
+        &.btn-avatar{
+          float: left;
+        }
+        &.field-input-img {
+          float: left;
+          width: auto;
+          label {
+            width: 100%;
+          }
+          input[type='file'] {
+            position: fixed;
+            top: -1000px;
+          }
+        }
+        > * {
+          float: right;
+        }
+        input, textarea {
+          @include borderBox;
+          font-family: 'Normal';
+          padding: 8px;
+          width: 100%;
+          &[type=text],
+          &[type=password],
+          &[type=email] {
+            @include borderRadius(2px);
+            font-size: 0.9em;
+            border: 1px solid #dddddd;
+            margin-top: 0;
+            background: #fefefe;
+          }
+          &[type=text]:focus,
+          &[type=password]:focus,
+          &[type=email]:focus {
+            outline: 0;
+            border: 1px solid $mainColor;
+          }
+        }
+        textarea {
+          @include borderRadius(2px);
+          font-size: 0.9em;
+          padding: 10px;
+          border: 1px solid #dddddd;
+          resize: none;
+          height: 150px;
+          &:focus {
+            outline: 0;
+            border: 1px solid $mainColor;
+          }
+        }
+      }
+    }
+  }
+  .field-button {
+    width: 80%;
+    padding: 7px 0;
+    display: block;
+    margin: 0 auto 10px;
+  }
+  .field-button-100{
+    @extend .field-button;
+    display: block;
+    width: 100%;
+  }
+}
+
+@media all and (max-width: $widthPhone) {
+  .form {
+    .field {
+      padding-bottom: 15px;
+      > .field-input, .field-label {
+        input{
+          font-size: $normal !important;
+        }
+
+      }
+    }
+  }
+}
+
+@media all and (min-width: $widthPhone) and (max-width: $widthTablet) {
+  .form {
+    .field {
+      > .field-input, .field-label {
+
+      }
+    }
+  }
+}
+
+@media all and (min-width: $widthTablet) and (max-width: $widthDesktop) {
+
+}
+
+@media all and (min-width: $widthDesktop) and (max-width: $widthDesktopLarge) {
+
+}
+
+@media all and (min-width: $widthDesktopLarge) {
+
+}

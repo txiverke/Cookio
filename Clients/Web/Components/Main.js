@@ -65,7 +65,7 @@ class Main extends React.Component {
                      windowWidth={windowWidth}
                      user={user}
                  />
-                 <section className="">
+                 <section className="content-wrapper">
                      {this.props.children}
                  </section>
              </div>

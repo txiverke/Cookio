@@ -3,7 +3,7 @@
 // @Email:  txiverke@gmail.com
 // @Project: Cookio
 // @Last modified by:   xavi
-// @Last modified time: 25-Nov-2016
+// @Last modified time: 28-Nov-2016
 
 .header{
     display: flex;
@@ -14,7 +14,6 @@
     width: 100%;
     box-sizing: border-box;
     z-index: $z-index-1;
-    opacity: .9;
     .header-logo {
         margin: 0;
         img{
@@ -23,6 +22,25 @@
     }
     .header-navWrapper {
         margin-left: auto;
+        z-index: $z-index-10;
+        .header-background {
+            @include transition3s;
+            position: fixed;
+            background: white;
+            top: 66px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            $z-index: $z-index-1;
+            &.open {
+                display: block;
+                opacity: 0.8
+            }
+            &.close {
+                opacity: 0
+            }
+        }
         .header-navRight {
             @include transition3s;
             position: fixed;
@@ -34,23 +52,32 @@
             padding: 0;
             margin: 0;
             list-style: none;
+            z-index: $z-index-10;
             .header-navRightItem {
                 > a {
                     @include transition3s;
                     font-family: Lighter;
                     display: block;
                     padding: 20px ;
-                    color: $titleColor;
+                    background: white;
+                    color: $mainColor;
                     text-decoration: none;
                     border-bottom: 1px solid #f1f1f1;
-                    &:first-child{
-                        border-top: 1px solid #f1f1f1; 
-                    }
                     &:hover,
                     &:active {
                         @include transition3s;
                         background: $mainColor;
                         color: white;
+                    }
+                    > [class^="icon-"], [class*=" icon-"]{
+                        position: absolute;
+                        right: 20px;
+                        font-size: 1.4rem;
+                    }
+                }
+                &:first-child{
+                    a {
+                        border-top: 1px solid #f1f1f1;
                     }
                 }
             }
@@ -67,6 +94,8 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            z-index: $z-index-10;
+
             .header-navItem {
                 @include transition3s;
                 &:hover,
@@ -90,11 +119,13 @@
                 > span {
                     font-size: 1.15rem;
                     cursor: pointer;
+                    &.close {
+                        background: $secondColor;
+                        color: white;
+                    }
+
                 }
             }
         }
     }
 }
-
-@media screen and (min-width: 1280px) {}
-@media screen and (max-width: 720px) {}

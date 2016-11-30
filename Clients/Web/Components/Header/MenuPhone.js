@@ -4,16 +4,15 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 24-Nov-2016
+* @Last modified time: 28-Nov-2016
 */
 
 import React from 'react';
-import {Link} from 'react-router';
 
 const users = {
     guest: [
-        {route: '/sign-in', label: 'Log In'},
-        {route: '/sign-up', label: 'Register'}
+        {route: '#/sign-in', label: 'Log In', icon:'icon-enter'},
+        {route: '#/sign-up', label: 'Register', icon: 'icon-file-add'}
     ],
     user: []
 };
@@ -21,9 +20,7 @@ const users = {
 class MenuPhone extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isOpen: false
-        };
+        this.state = { isOpen: false };
         this.toggleMenu = this.toggleMenu.bind(this);
     }
 
@@ -31,9 +28,12 @@ class MenuPhone extends React.Component {
         this.setState({isOpen: !this.state.isOpen});
     }
     render() {
+        const isOpen = this.state.isOpen;
         const userType = this.props.user ? users.user : users.guest;
-        const menuState = this.state.isOpen ? 'header-navRight open' : 'header-navRight close';
-        const menuIcon = this.state.isOpen ? 'icon-cross-circle' : 'icon-menu';
+        const menuState = isOpen ? 'header-navRight open' : 'header-navRight close';
+        const menuIcon = isOpen ? 'icon-cross-circle close' : 'icon-menu';
+        const menuBackgournd = isOpen ? 'header-background open' : 'header-background close';
+
         return (
             <nav className="header-navWrapper" role="navigation">
                 <ul className="header-navItems">
@@ -46,10 +46,17 @@ class MenuPhone extends React.Component {
                 <ul className={menuState}>
                     {userType.map((user, index) => (
                         <li className="header-navRightItem" key={index}>
-                            <Link to={user.route}>{user.label}</Link>
+                            <a onClick={this.toggleMenu} href={user.route}>
+                                {user.label}
+                                <span className={user.icon}></span>
+                            </a>
                         </li>
                     ))}
                 </ul>
+                <div
+                    onClick={this.toggleMenu}
+                    className={menuBackgournd}>
+                </div>
             </nav>
         );
     }

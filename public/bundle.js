@@ -26443,7 +26443,7 @@
 	windowWidth:windowWidth,
 	user:user}),
 
-	_react2.default.createElement('section',{className:''},
+	_react2.default.createElement('section',{className:'content-wrapper'},
 	this.props.children)));
 
 
@@ -26550,13 +26550,12 @@
 
 
 
-	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
-	var _reactRouter=__webpack_require__(172);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
 
 	var users={
 	guest:[
-	{route:'/sign-in',label:'Log In'},
-	{route:'/sign-up',label:'Register'}],
+	{route:'#/sign-in',label:'Log In',icon:'icon-enter'},
+	{route:'#/sign-up',label:'Register',icon:'icon-file-add'}],
 
 	user:[]};var
 
@@ -26564,19 +26563,20 @@
 	MenuPhone=function(_React$Component){_inherits(MenuPhone,_React$Component);
 	function MenuPhone(props){_classCallCheck(this,MenuPhone);var _this=_possibleConstructorReturn(this,(MenuPhone.__proto__||Object.getPrototypeOf(MenuPhone)).call(this,
 	props));
-	_this.state={
-	isOpen:false};
-
+	_this.state={isOpen:false};
 	_this.toggleMenu=_this.toggleMenu.bind(_this);return _this;
 	}_createClass(MenuPhone,[{key:'toggleMenu',value:function toggleMenu()
 
 	{
 	this.setState({isOpen:!this.state.isOpen});
 	}},{key:'render',value:function render()
-	{
+	{var _this2=this;
+	var isOpen=this.state.isOpen;
 	var userType=this.props.user?users.user:users.guest;
-	var menuState=this.state.isOpen?'header-navRight open':'header-navRight close';
-	var menuIcon=this.state.isOpen?'icon-cross-circle':'icon-menu';
+	var menuState=isOpen?'header-navRight open':'header-navRight close';
+	var menuIcon=isOpen?'icon-cross-circle close':'icon-menu';
+	var menuBackgournd=isOpen?'header-background open':'header-background close';
+
 	return(
 	_react2.default.createElement('nav',{className:'header-navWrapper',role:'navigation'},
 	_react2.default.createElement('ul',{className:'header-navItems'},
@@ -26589,9 +26589,16 @@
 	_react2.default.createElement('ul',{className:menuState},
 	userType.map(function(user,index){return(
 	_react2.default.createElement('li',{className:'header-navRightItem',key:index},
-	_react2.default.createElement(_reactRouter.Link,{to:user.route},user.label)));}))));
+	_react2.default.createElement('a',{onClick:_this2.toggleMenu,href:user.route},
+	user.label,
+	_react2.default.createElement('span',{className:user.icon}))));})),
 
 
+
+
+	_react2.default.createElement('div',{
+	onClick:this.toggleMenu,
+	className:menuBackgournd})));
 
 
 
@@ -26815,11 +26822,54 @@
 
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
-	SignIn=function(_React$Component){_inherits(SignIn,_React$Component);function SignIn(){_classCallCheck(this,SignIn);return _possibleConstructorReturn(this,(SignIn.__proto__||Object.getPrototypeOf(SignIn)).apply(this,arguments));}_createClass(SignIn,[{key:'render',value:function render()
+
+	SignIn=function(_React$Component){_inherits(SignIn,_React$Component);
+	function SignIn(props){_classCallCheck(this,SignIn);var _this=_possibleConstructorReturn(this,(SignIn.__proto__||Object.getPrototypeOf(SignIn)).call(this,
+	props));
+	_this.state={value:''};
+	_this.handleSubmit=_this.handleSubmit.bind(_this);
+	_this.handleChange=_this.handleChange.bind(_this);return _this;
+	}_createClass(SignIn,[{key:'handleChange',value:function handleChange(
+	event){
+	console.log(event);
+	this.setState({
+	value:event.target.value});
+
+	}},{key:'handleSubmit',value:function handleSubmit(
+	event){
+	console.log(event);
+	}},{key:'render',value:function render()
 	{
 	return(
-	_react2.default.createElement('div',null,
-	_react2.default.createElement('h1',null,'SIGN IN')));
+	_react2.default.createElement('div',{className:'content'},
+	_react2.default.createElement('h1',{className:'main-title'},'Sign In'),
+	_react2.default.createElement('hr',{className:'hr-1'}),
+	_react2.default.createElement('form',{className:'form',onSubmit:this.handleSubmit},
+	_react2.default.createElement('fieldset',{className:'field'},
+	_react2.default.createElement('div',{className:'field-label'},
+	_react2.default.createElement('label',null,'Username:')),
+
+	_react2.default.createElement('div',{className:'field-input'},
+	_react2.default.createElement('input',{
+	type:'text',
+	value:this.state.value,
+	onChange:this.handleChange}))),
+
+
+	_react2.default.createElement('fieldset',{className:'field mb-20'},
+	_react2.default.createElement('div',{className:'field-label'},
+	_react2.default.createElement('label',null,'Password:')),
+
+	_react2.default.createElement('div',{className:'field-input'},
+	_react2.default.createElement('input',{type:'password',name:'password',required:true}))),
+
+
+	_react2.default.createElement('div',{className:'hr-1'}),
+	_react2.default.createElement('button',{
+	className:'btn-invert field-button',
+	type:'submit',
+	value:'submit'},'Sign In'))));
+
 
 
 	}}]);return SignIn;}(_react2.default.Component);exports.default=
