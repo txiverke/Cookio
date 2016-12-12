@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 12-Dec-2016
 */
 
 const User = require('mongoose').model('User');
@@ -59,12 +59,8 @@ exports.signin = (req, res) => {
     User.findOne({username: username},
         (err, user) => {
             if (err || !user || !user.authenticate(password) ) {
-                console.log('err', err);
-                console.log('user', user.password);
-                console.log('pass', req.body.password)
-                console.log('pass', user.hashPassword(req.body.password))
                 res.status(404).json({
-                    message: err,
+                    message: 'The username or the password are not valid.',
                     success: false
                 });
             } else {

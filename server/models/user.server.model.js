@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 07-Nov-2016
+* @Last modified time: 12-Dec-2016
 */
 
 const mongoose = require('mongoose');

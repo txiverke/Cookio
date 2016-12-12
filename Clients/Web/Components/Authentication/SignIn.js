@@ -9,6 +9,7 @@
 
 import React from 'react';
 import API from '../../Utils/Api';
+import { Router } from 'react-router';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -18,11 +19,26 @@ class SignIn extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const data = {
-            username: this.refs.username.value,
-            password: this.refs.password.value
-        };
-        console.log('data->', data)
+        const username = this.refs.username.value;
+        const password = this.refs.password.value;
+        const user = {};
+
+        if (username && password) {
+            user.username = username;
+            user.password = password;
+
+            API.post('signin', user).then((res) => {
+                console.log('res', res)
+                if (res.success) {
+                    this.props.history.push(`/guest/${res.user.username}`);
+                    console.log('SUCCESS!!!!')
+                } else {
+                    console.log(res.message)
+                }
+            });
+        }
+
+
     }
 
     render(){

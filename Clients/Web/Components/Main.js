@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 25-Nov-2016
+* @Last modified time: 12-Dec-2016
 */
 
 import React from 'react';
@@ -61,10 +61,7 @@ class Main extends React.Component {
          const user = this.state.user;
          return (
              <div className="">
-                 <Header
-                     windowWidth={windowWidth}
-                     user={user}
-                 />
+                 <Header windowWidth={windowWidth} user={user}/>
                  <section className="content-wrapper">
                      {this.props.children}
                  </section>

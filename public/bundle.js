@@ -26368,8 +26368,8 @@
 
 
 	_react2.default.createElement(_reactRouter.Route,{path:'/',component:_Main2.default},
-	_react2.default.createElement(_reactRouter.Route,{path:'/sign-in',component:_SignIn2.default}),
-	_react2.default.createElement(_reactRouter.Route,{path:'/sign-up',component:_SignUp2.default}),
+	_react2.default.createElement(_reactRouter.Route,{path:'sign-in',component:_SignIn2.default}),
+	_react2.default.createElement(_reactRouter.Route,{path:'sign-up',component:_SignUp2.default}),
 	_react2.default.createElement(_reactRouter.IndexRoute,{component:_Dashboard2.default}));
 
 /***/ },
@@ -26439,10 +26439,7 @@
 	var user=this.state.user;
 	return(
 	_react2.default.createElement('div',{className:''},
-	_react2.default.createElement(_Header2.default,{
-	windowWidth:windowWidth,
-	user:user}),
-
+	_react2.default.createElement(_Header2.default,{windowWidth:windowWidth,user:user}),
 	_react2.default.createElement('section',{className:'content-wrapper'},
 	this.props.children)));
 
@@ -26821,7 +26818,8 @@
 
 
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
-	var _Api=__webpack_require__(235);var _Api2=_interopRequireDefault(_Api);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
+	var _Api=__webpack_require__(235);var _Api2=_interopRequireDefault(_Api);
+	var _reactRouter=__webpack_require__(172);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
 	SignIn=function(_React$Component){_inherits(SignIn,_React$Component);
 	function SignIn(props){_classCallCheck(this,SignIn);var _this=_possibleConstructorReturn(this,(SignIn.__proto__||Object.getPrototypeOf(SignIn)).call(this,
@@ -26829,13 +26827,28 @@
 	_this.handleSubmit=_this.handleSubmit.bind(_this);return _this;
 	}_createClass(SignIn,[{key:'handleSubmit',value:function handleSubmit(
 
-	e){
+	e){var _this2=this;
 	e.preventDefault();
-	var data={
-	username:this.refs.username.value,
-	password:this.refs.password.value};
+	var username=this.refs.username.value;
+	var password=this.refs.password.value;
+	var user={};
 
-	console.log('data->',data);
+	if(username&&password){
+	user.username=username;
+	user.password=password;
+
+	_Api2.default.post('signin',user).then(function(res){
+	console.log('res',res);
+	if(res.success){
+	_this2.props.history.push('/guest/'+res.user.username);
+	console.log('SUCCESS!!!!');
+	}else{
+	console.log(res.message);
+	}
+	});
+	}
+
+
 	}},{key:'render',value:function render()
 
 	{
