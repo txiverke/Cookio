@@ -26364,7 +26364,7 @@
 	var _Main=__webpack_require__(228);var _Main2=_interopRequireDefault(_Main);
 	var _Dashboard=__webpack_require__(232);var _Dashboard2=_interopRequireDefault(_Dashboard);
 	var _SignIn=__webpack_require__(234);var _SignIn2=_interopRequireDefault(_SignIn);
-	var _SignUp=__webpack_require__(235);var _SignUp2=_interopRequireDefault(_SignUp);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
+	var _SignUp=__webpack_require__(236);var _SignUp2=_interopRequireDefault(_SignUp);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 
 	_react2.default.createElement(_reactRouter.Route,{path:'/',component:_Main2.default},
@@ -26820,25 +26820,24 @@
 
 
 
-	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
-
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
+	var _Api=__webpack_require__(235);var _Api2=_interopRequireDefault(_Api);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
 	SignIn=function(_React$Component){_inherits(SignIn,_React$Component);
 	function SignIn(props){_classCallCheck(this,SignIn);var _this=_possibleConstructorReturn(this,(SignIn.__proto__||Object.getPrototypeOf(SignIn)).call(this,
 	props));
-	_this.state={value:''};
-	_this.handleSubmit=_this.handleSubmit.bind(_this);
-	_this.handleChange=_this.handleChange.bind(_this);return _this;
-	}_createClass(SignIn,[{key:'handleChange',value:function handleChange(
-	event){
-	console.log(event);
-	this.setState({
-	value:event.target.value});
+	_this.handleSubmit=_this.handleSubmit.bind(_this);return _this;
+	}_createClass(SignIn,[{key:'handleSubmit',value:function handleSubmit(
 
-	}},{key:'handleSubmit',value:function handleSubmit(
-	event){
-	console.log(event);
+	e){
+	e.preventDefault();
+	var data={
+	username:this.refs.username.value,
+	password:this.refs.password.value};
+
+	console.log('data->',data);
 	}},{key:'render',value:function render()
+
 	{
 	return(
 	_react2.default.createElement('div',{className:'content'},
@@ -26852,8 +26851,8 @@
 	_react2.default.createElement('div',{className:'field-input'},
 	_react2.default.createElement('input',{
 	type:'text',
-	value:this.state.value,
-	onChange:this.handleChange}))),
+	ref:'username'}))),
+
 
 
 	_react2.default.createElement('fieldset',{className:'field mb-20'},
@@ -26861,14 +26860,17 @@
 	_react2.default.createElement('label',null,'Password:')),
 
 	_react2.default.createElement('div',{className:'field-input'},
-	_react2.default.createElement('input',{type:'password',name:'password',required:true}))),
+	_react2.default.createElement('input',{
+	type:'password',
+	ref:'password'}))),
+
 
 
 	_react2.default.createElement('div',{className:'hr-1'}),
 	_react2.default.createElement('button',{
 	className:'btn-invert field-button',
 	type:'submit',
-	value:'submit'},'Sign In'))));
+	value:'Submit'},'Sign In'))));
 
 
 
@@ -26879,6 +26881,64 @@
 
 /***/ },
 /* 235 */
+/***/ function(module, exports) {
+
+	Object.defineProperty(exports,"__esModule",{value:true});
+
+
+
+
+
+
+
+	var API_URL='http://localhost:3001/';
+	var HEADERS={
+	'Accept':'application/json',
+	'Content-Type':'application/json'};
+
+
+	var api={
+	get:function get(url){
+	var URL=''+API_URL+url;
+	var OPTIONS={
+	method:'GET',
+	headers:HEADERS};
+
+	return fetch(URL,OPTIONS).then(function(res){return res.json();});
+	},
+	post:function post(url,data){
+	var URL=''+API_URL+url;
+	var OPTIONS={
+	method:'POST',
+	headers:HEADERS,
+	body:JSON.stringify(data)};
+
+	return fetch(URL,OPTIONS).then(function(res){return res.json();});
+	},
+	put:function put(url,data){
+	var URL=''+API_URL+url;
+	var OPTIONS={
+	method:'PUT',
+	headers:HEADERS,
+	body:JSON.stringify(data)};
+
+	return fetch(URL,OPTIONS).then(function(res){return res.json();});
+	},
+	delete:function _delete(url,data){
+	var URL=''+API_URL+url;
+	var OPTIONS={
+	method:'DELETE',
+	headers:HEADERS,
+	body:JSON.stringify(data)};
+
+	return fetch(URL,OPTIONS).then(function(res){return res.json();});
+	}};exports.default=
+
+
+	api;
+
+/***/ },
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();

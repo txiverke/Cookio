@@ -4,28 +4,27 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 29-Nov-2016
+* @Last modified time: 12-Dec-2016
 */
 
 import React from 'react';
-
+import API from '../../Utils/Api';
 
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
     }
-    handleChange(event) {
-        console.log(event);
-        this.setState({
-            value: event.target.value
-        });
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const data = {
+            username: this.refs.username.value,
+            password: this.refs.password.value
+        };
+        console.log('data->', data)
     }
-    handleSubmit(event) {
-        console.log(event)
-    }
+
     render(){
         return (
             <div className="content">
@@ -39,23 +38,26 @@ class SignIn extends React.Component {
                         <div className="field-input">
                             <input
                                 type="text"
-                                value={this.state.value}
-                                onChange={this.handleChange}/>
+                                ref="username"
+                            />
                         </div>
                     </fieldset>
-                <fieldset className="field mb-20">
-                    <div className="field-label">
-                        <label>Password:</label>
-                    </div>
-                    <div className="field-input">
-                        <input type="password" name="password" required />
-                    </div>
-                </fieldset>
-                <div className="hr-1"></div>
-                <button
-                    className="btn-invert field-button"
-                    type="submit"
-                    value="submit">Sign In</button>
+                    <fieldset className="field mb-20">
+                        <div className="field-label">
+                            <label>Password:</label>
+                        </div>
+                        <div className="field-input">
+                            <input
+                                type="password"
+                                ref="password"
+                            />
+                        </div>
+                    </fieldset>
+                    <div className="hr-1"></div>
+                    <button
+                        className="btn-invert field-button"
+                        type="submit"
+                        value="Submit">Sign In</button>
                 </form>
             </div>
         );
