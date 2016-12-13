@@ -4,22 +4,16 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 25-Nov-2016
+* @Last modified time: 13-Dec-2016
 */
 
 import React from 'react';
 import { Link } from 'react-router';
-
-const users = {
-    guest: [
-        {route: '/sign-in', label: 'Log In'},
-        {route: '/sign-up', label: 'Register'}
-    ],
-    user: []
-}
+import routesList from '../Helpers/RoutesList';
 
 const MenuDesktop = ({user}) => {
-    const userType = user ? users.user : users.guest;
+    const userType = user ? routesList.user : routesList.guest;
+
     return (
         <nav className="header-navWrapper" role="navigation">
             <ul className="header-navItems">

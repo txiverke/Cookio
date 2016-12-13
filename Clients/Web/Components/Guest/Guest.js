@@ -4,18 +4,18 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 12-Dec-2016
+* @Last modified time: 13-Dec-2016
 */
 
-import React form 'react';
+import React from 'react';
 
 class Guest extends React.Component {
     render() {
         return (
             <div>
-                <h2>Just the Guest View</h2>
+                <h2>Just the Guest View {this.props.username}</h2>
             </div>
-        )
+        );
     }
 }
 

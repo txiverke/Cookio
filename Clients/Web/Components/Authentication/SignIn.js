@@ -4,14 +4,15 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 12-Dec-2016
+* @Last modified time: 13-Dec-2016
 */
 
 import React from 'react';
 import API from '../../Utils/Api';
-import { Router } from 'react-router';
+import { hashHistory } from 'react-router';
 
 class SignIn extends React.Component {
+
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,17 +29,15 @@ class SignIn extends React.Component {
             user.password = password;
 
             API.post('signin', user).then((res) => {
-                console.log('res', res)
+                console.log('res', res.user);
                 if (res.success) {
-                    this.props.history.push(`/guest/${res.user.username}`);
-                    console.log('SUCCESS!!!!')
+                    const path = `/${res.user.type}/${res.user.username}`;
+                    hashHistory.push(path);
                 } else {
                     console.log(res.message)
                 }
             });
         }
-
-
     }
 
     render(){

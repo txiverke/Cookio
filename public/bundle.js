@@ -26362,15 +26362,17 @@
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
 	var _reactRouter=__webpack_require__(172);
 	var _Main=__webpack_require__(228);var _Main2=_interopRequireDefault(_Main);
-	var _Dashboard=__webpack_require__(232);var _Dashboard2=_interopRequireDefault(_Dashboard);
-	var _SignIn=__webpack_require__(234);var _SignIn2=_interopRequireDefault(_SignIn);
-	var _SignUp=__webpack_require__(236);var _SignUp2=_interopRequireDefault(_SignUp);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
+	var _Dashboard=__webpack_require__(233);var _Dashboard2=_interopRequireDefault(_Dashboard);
+	var _SignIn=__webpack_require__(235);var _SignIn2=_interopRequireDefault(_SignIn);
+	var _SignUp=__webpack_require__(237);var _SignUp2=_interopRequireDefault(_SignUp);
+	var _Guest=__webpack_require__(238);var _Guest2=_interopRequireDefault(_Guest);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 
 	_react2.default.createElement(_reactRouter.Route,{path:'/',component:_Main2.default},
-	_react2.default.createElement(_reactRouter.Route,{path:'sign-in',component:_SignIn2.default}),
-	_react2.default.createElement(_reactRouter.Route,{path:'sign-up',component:_SignUp2.default}),
-	_react2.default.createElement(_reactRouter.IndexRoute,{component:_Dashboard2.default}));
+	_react2.default.createElement(_reactRouter.IndexRoute,{component:_Dashboard2.default}),
+	_react2.default.createElement(_reactRouter.Route,{path:'/sign-in',component:_SignIn2.default}),
+	_react2.default.createElement(_reactRouter.Route,{path:'/sign-up',component:_SignUp2.default}),
+	_react2.default.createElement(_reactRouter.Route,{path:'/guest/:username',component:_Guest2.default}));
 
 /***/ },
 /* 228 */
@@ -26466,7 +26468,7 @@
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
 	var _reactRouter=__webpack_require__(172);
 	var _MenuDesktop=__webpack_require__(230);var _MenuDesktop2=_interopRequireDefault(_MenuDesktop);
-	var _MenuPhone=__webpack_require__(231);var _MenuPhone2=_interopRequireDefault(_MenuPhone);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
+	var _MenuPhone=__webpack_require__(232);var _MenuPhone2=_interopRequireDefault(_MenuPhone);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 	var PhoneSize=720;
 
@@ -26503,18 +26505,12 @@
 
 
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
-	var _reactRouter=__webpack_require__(172);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
-
-	var users={
-	guest:[
-	{route:'/sign-in',label:'Log In'},
-	{route:'/sign-up',label:'Register'}],
-
-	user:[]};
-
+	var _reactRouter=__webpack_require__(172);
+	var _RoutesList=__webpack_require__(231);var _RoutesList2=_interopRequireDefault(_RoutesList);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
 	var MenuDesktop=function MenuDesktop(_ref){var user=_ref.user;
-	var userType=user?users.user:users.guest;
+	var userType=user?_RoutesList2.default.user:_RoutesList2.default.guest;
+
 	return(
 	_react2.default.createElement('nav',{className:'header-navWrapper',role:'navigation'},
 	_react2.default.createElement('ul',{className:'header-navItems'},
@@ -26536,6 +26532,35 @@
 
 /***/ },
 /* 231 */
+/***/ function(module, exports) {
+
+	Object.defineProperty(exports,"__esModule",{value:true});
+
+
+
+
+
+
+
+
+	var routes={
+	guest:[
+	{route:'/sign-in',label:'Log In'},
+	{route:'/sign-up',label:'Register'}],
+
+	user:[
+	{route:'/profile',label:'Profile'},
+	{route:'/payment',label:'Payment'},
+	{route:'/notifications',label:'Notifications'},
+	{route:'/history',label:'History'},
+	{route:'/sign-out',label:'Sign Out'}]};exports.default=
+
+
+
+	routes;
+
+/***/ },
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
@@ -26547,15 +26572,8 @@
 
 
 
-	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}
-
-	var users={
-	guest:[
-	{route:'#/sign-in',label:'Log In',icon:'icon-enter'},
-	{route:'#/sign-up',label:'Register',icon:'icon-file-add'}],
-
-	user:[]};var
-
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
+	var _RoutesList=__webpack_require__(231);var _RoutesList2=_interopRequireDefault(_RoutesList);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
 	MenuPhone=function(_React$Component){_inherits(MenuPhone,_React$Component);
 	function MenuPhone(props){_classCallCheck(this,MenuPhone);var _this=_possibleConstructorReturn(this,(MenuPhone.__proto__||Object.getPrototypeOf(MenuPhone)).call(this,
@@ -26569,7 +26587,7 @@
 	}},{key:'render',value:function render()
 	{var _this2=this;
 	var isOpen=this.state.isOpen;
-	var userType=this.props.user?users.user:users.guest;
+	var userType=this.props.user?_RoutesList2.default.user:_RoutesList2.default.guest;
 	var menuState=isOpen?'header-navRight open':'header-navRight close';
 	var menuIcon=isOpen?'icon-cross-circle close':'icon-menu';
 	var menuBackgournd=isOpen?'header-background open':'header-background close';
@@ -26609,7 +26627,7 @@
 	MenuPhone;
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
@@ -26622,7 +26640,7 @@
 
 
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
-	var _reactImageSlider=__webpack_require__(233);var _reactImageSlider2=_interopRequireDefault(_reactImageSlider);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
+	var _reactImageSlider=__webpack_require__(234);var _reactImageSlider2=_interopRequireDefault(_reactImageSlider);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
 	Dashboard=function(_React$Component){_inherits(Dashboard,_React$Component);function Dashboard(){_classCallCheck(this,Dashboard);return _possibleConstructorReturn(this,(Dashboard.__proto__||Object.getPrototypeOf(Dashboard)).apply(this,arguments));}_createClass(Dashboard,[{key:'render',value:function render()
 	{
@@ -26648,7 +26666,7 @@
 	Dashboard;
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26805,7 +26823,7 @@
 
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
@@ -26818,16 +26836,17 @@
 
 
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
-	var _Api=__webpack_require__(235);var _Api2=_interopRequireDefault(_Api);
+	var _Api=__webpack_require__(236);var _Api2=_interopRequireDefault(_Api);
 	var _reactRouter=__webpack_require__(172);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
 	SignIn=function(_React$Component){_inherits(SignIn,_React$Component);
+
 	function SignIn(props){_classCallCheck(this,SignIn);var _this=_possibleConstructorReturn(this,(SignIn.__proto__||Object.getPrototypeOf(SignIn)).call(this,
 	props));
 	_this.handleSubmit=_this.handleSubmit.bind(_this);return _this;
 	}_createClass(SignIn,[{key:'handleSubmit',value:function handleSubmit(
 
-	e){var _this2=this;
+	e){
 	e.preventDefault();
 	var username=this.refs.username.value;
 	var password=this.refs.password.value;
@@ -26838,17 +26857,15 @@
 	user.password=password;
 
 	_Api2.default.post('signin',user).then(function(res){
-	console.log('res',res);
+	console.log('res',res.user);
 	if(res.success){
-	_this2.props.history.push('/guest/'+res.user.username);
-	console.log('SUCCESS!!!!');
+	var path='/'+res.user.type+'/'+res.user.username;
+	_reactRouter.hashHistory.push(path);
 	}else{
 	console.log(res.message);
 	}
 	});
 	}
-
-
 	}},{key:'render',value:function render()
 
 	{
@@ -26893,7 +26910,7 @@
 	SignIn;
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports) {
 
 	Object.defineProperty(exports,"__esModule",{value:true});
@@ -26951,7 +26968,7 @@
 	api;
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
@@ -26976,6 +26993,33 @@
 
 
 	SignUp;
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();
+
+
+
+
+
+
+
+
+	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
+
+	Guest=function(_React$Component){_inherits(Guest,_React$Component);function Guest(){_classCallCheck(this,Guest);return _possibleConstructorReturn(this,(Guest.__proto__||Object.getPrototypeOf(Guest)).apply(this,arguments));}_createClass(Guest,[{key:'render',value:function render()
+	{
+	return(
+	_react2.default.createElement('div',null,
+	_react2.default.createElement('h2',null,'Just the Guest View ',this.props.username)));
+
+
+	}}]);return Guest;}(_react2.default.Component);exports.default=
+
+
+	Guest;
 
 /***/ }
 /******/ ]);
