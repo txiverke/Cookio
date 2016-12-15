@@ -3,7 +3,7 @@
 // @Email:  txiverke@gmail.com
 // @Project: Cookio
 // @Last modified by:   xavi
-// @Last modified time: 28-Nov-2016
+// @Last modified time: 14-Dec-2016
 
 .header{
     display: flex;
@@ -44,11 +44,11 @@
         .header-navRight {
             @include transition3s;
             position: fixed;
-            background: white;
+            background: $textColor;
             width: 80%;
             height: 100%;
             min-height: 100%;
-            top: 66px;
+            top: 0;
             padding: 0;
             margin: 0;
             list-style: none;
@@ -59,20 +59,20 @@
                     font-family: Lighter;
                     display: block;
                     padding: 20px ;
-                    background: white;
-                    color: $mainColor;
+                    background: $textColor;
+                    color: white;
                     text-decoration: none;
-                    border-bottom: 1px solid #f1f1f1;
                     &:hover,
                     &:active {
                         @include transition3s;
-                        background: $mainColor;
+                        background: darken($textColor, 10);
                         color: white;
                     }
-                    > [class^="icon-"], [class*=" icon-"]{
-                        position: absolute;
-                        right: 20px;
-                        font-size: 1.4rem;
+                    > [class^="icon-"],
+                    [class*=" icon-"] {
+                        color: $secondColor;
+                        font-size: 1.1rem;
+                        margin-right: 15px;
                     }
                 }
                 &:first-child{
@@ -82,10 +82,10 @@
                 }
             }
             &.open {
-                right: 0;
+                left: 0;
             }
             &.close{
-                right: -80%;
+                left: -80%;
             }
         }
         .header-navItems {
@@ -119,11 +119,6 @@
                 > span {
                     font-size: 1.15rem;
                     cursor: pointer;
-                    &.close {
-                        background: $secondColor;
-                        color: white;
-                    }
-
                 }
             }
         }

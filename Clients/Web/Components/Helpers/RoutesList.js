@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 13-Dec-2016
+* @Last modified time: 14-Dec-2016
 */
 
 const routes = {
@@ -13,11 +13,11 @@ const routes = {
         {route: '/sign-up', label: 'Register', icon: 'icon-file-add'}
     ],
     user: [
-        {route: '/profile', label: 'Profile'},
-        {route: '/payment', label: 'Payment'},
-        {route: '/notifications', label: 'Notifications'},
-        {route: '/history', label: 'History'},
-        {route: '/sign-out', label: 'Sign Out'}
+        {route: '/profile', label: 'Profile', icon: 'icon-user'},
+        {route: '/payment', label: 'Payment', icon: 'icon-store'},
+        {route: '/notifications', label: 'Notifications', icon: 'icon-alarm'},
+        {route: '/history', label: 'History', icon: 'icon-history'},
+        {route: '/sign-out', label: 'Sign Out', icon: 'icon-exit'}
     ]
 };
 

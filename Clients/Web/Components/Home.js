@@ -4,13 +4,13 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 23-Nov-2016
+* @Last modified time: 14-Dec-2016
 */
 
 import React from 'react';
 import Slider from 'react-image-slider';
 
-class Dashboard extends React.Component {
+class Home extends React.Component {
     render(){
         const images = [
             './assets/bg_1.jpg',
@@ -25,10 +25,10 @@ class Dashboard extends React.Component {
                     isInfinite={true}
                     delay={10000}
                 />
-                <h1>Dashboard</h1>
+                <h1>HOME</h1>
             </div>
         );
     }
 }
 
-export default Dashboard;
+export default Home;

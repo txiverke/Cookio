@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 24-Nov-2016
+* @Last modified time: 14-Dec-2016
 */
 
 import React from 'react';
@@ -14,8 +14,11 @@ import MenuPhone from './MenuPhone';
 
 const PhoneSize = 720;
 
-const Header = ({windowWidth, user}) => {
-    const Nav = (windowWidth > PhoneSize) ? <MenuDesktop user={user} /> : <MenuPhone user={user} />;
+const Header = ({windowWidth, logged, user}) => {
+    const Nav = (windowWidth > PhoneSize)
+                ? <MenuDesktop logged={logged} user={user} />
+                : <MenuPhone logged={logged} user={user} />;
+
     return (
         <header className="header">
             <Link to="/" className="header-logo">
@@ -28,7 +31,8 @@ const Header = ({windowWidth, user}) => {
 
 Header.propTypes = {
     windowWidth: React.PropTypes.number,
-    user: React.PropTypes.bool
+    logged: React.PropTypes.bool,
+    user: React.PropTypes.string
 }
 
 export default Header;

@@ -26362,14 +26362,14 @@
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
 	var _reactRouter=__webpack_require__(172);
 	var _Main=__webpack_require__(228);var _Main2=_interopRequireDefault(_Main);
-	var _Dashboard=__webpack_require__(233);var _Dashboard2=_interopRequireDefault(_Dashboard);
+	var _Home=__webpack_require__(233);var _Home2=_interopRequireDefault(_Home);
 	var _SignIn=__webpack_require__(235);var _SignIn2=_interopRequireDefault(_SignIn);
 	var _SignUp=__webpack_require__(237);var _SignUp2=_interopRequireDefault(_SignUp);
 	var _Guest=__webpack_require__(238);var _Guest2=_interopRequireDefault(_Guest);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}exports.default=
 
 
 	_react2.default.createElement(_reactRouter.Route,{path:'/',component:_Main2.default},
-	_react2.default.createElement(_reactRouter.IndexRoute,{component:_Dashboard2.default}),
+	_react2.default.createElement(_reactRouter.IndexRoute,{component:_Home2.default}),
 	_react2.default.createElement(_reactRouter.Route,{path:'/sign-in',component:_SignIn2.default}),
 	_react2.default.createElement(_reactRouter.Route,{path:'/sign-up',component:_SignUp2.default}),
 	_react2.default.createElement(_reactRouter.Route,{path:'/guest/:username',component:_Guest2.default}));
@@ -26400,7 +26400,10 @@
 	Main=function(_React$Component){_inherits(Main,_React$Component);
 	function Main(props){_classCallCheck(this,Main);var _this=_possibleConstructorReturn(this,(Main.__proto__||Object.getPrototypeOf(Main)).call(this,
 	props));
-	_this.state={user:false};
+	_this.state={
+	logged:false,
+	user:''};
+
 	_this.onResize=_this.onResize.bind(_this);
 	_this.updateDimensions=_this.updateDimensions.bind(_this);return _this;
 	}_createClass(Main,[{key:'componentDidMount',value:function componentDidMount()
@@ -26438,10 +26441,16 @@
 
 	{
 	var windowWidth=this.state.windowWidth;
+	var logged=this.state.logged;
 	var user=this.state.user;
+
 	return(
 	_react2.default.createElement('div',{className:''},
-	_react2.default.createElement(_Header2.default,{windowWidth:windowWidth,user:user}),
+	_react2.default.createElement(_Header2.default,{
+	windowWidth:windowWidth,
+	logged:logged,
+	user:user}),
+
 	_react2.default.createElement('section',{className:'content-wrapper'},
 	this.props.children)));
 
@@ -26472,8 +26481,11 @@
 
 	var PhoneSize=720;
 
-	var Header=function Header(_ref){var windowWidth=_ref.windowWidth;var user=_ref.user;
-	var Nav=windowWidth>PhoneSize?_react2.default.createElement(_MenuDesktop2.default,{user:user}):_react2.default.createElement(_MenuPhone2.default,{user:user});
+	var Header=function Header(_ref){var windowWidth=_ref.windowWidth;var logged=_ref.logged;var user=_ref.user;
+	var Nav=windowWidth>PhoneSize?
+	_react2.default.createElement(_MenuDesktop2.default,{logged:logged,user:user}):
+	_react2.default.createElement(_MenuPhone2.default,{logged:logged,user:user});
+
 	return(
 	_react2.default.createElement('header',{className:'header'},
 	_react2.default.createElement(_reactRouter.Link,{to:'/',className:'header-logo'},
@@ -26486,7 +26498,8 @@
 
 	Header.propTypes={
 	windowWidth:_react2.default.PropTypes.number,
-	user:_react2.default.PropTypes.bool};exports.default=
+	logged:_react2.default.PropTypes.bool,
+	user:_react2.default.PropTypes.string};exports.default=
 
 
 	Header;
@@ -26508,8 +26521,8 @@
 	var _reactRouter=__webpack_require__(172);
 	var _RoutesList=__webpack_require__(231);var _RoutesList2=_interopRequireDefault(_RoutesList);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}
 
-	var MenuDesktop=function MenuDesktop(_ref){var user=_ref.user;
-	var userType=user?_RoutesList2.default.user:_RoutesList2.default.guest;
+	var MenuDesktop=function MenuDesktop(_ref){var logged=_ref.logged;var user=_ref.user;
+	var userType=logged?_RoutesList2.default.user:_RoutesList2.default.guest;
 
 	return(
 	_react2.default.createElement('nav',{className:'header-navWrapper',role:'navigation'},
@@ -26525,7 +26538,8 @@
 	};
 
 	MenuDesktop.propTypes={
-	user:_react2.default.PropTypes.bool.isRequired};exports.default=
+	logged:_react2.default.PropTypes.bool.isRequired,
+	user:_react2.default.PropTypes.string.isRequired};exports.default=
 
 
 	MenuDesktop;
@@ -26545,15 +26559,15 @@
 
 	var routes={
 	guest:[
-	{route:'/sign-in',label:'Log In'},
-	{route:'/sign-up',label:'Register'}],
+	{route:'/sign-in',label:'Log In',icon:'icon-enter'},
+	{route:'/sign-up',label:'Register',icon:'icon-file-add'}],
 
 	user:[
-	{route:'/profile',label:'Profile'},
-	{route:'/payment',label:'Payment'},
-	{route:'/notifications',label:'Notifications'},
-	{route:'/history',label:'History'},
-	{route:'/sign-out',label:'Sign Out'}]};exports.default=
+	{route:'/profile',label:'Profile',icon:'icon-user'},
+	{route:'/payment',label:'Payment',icon:'icon-store'},
+	{route:'/notifications',label:'Notifications',icon:'icon-alarm'},
+	{route:'/history',label:'History',icon:'icon-history'},
+	{route:'/sign-out',label:'Sign Out',icon:'icon-exit'}]};exports.default=
 
 
 
@@ -26585,12 +26599,12 @@
 	{
 	this.setState({isOpen:!this.state.isOpen});
 	}},{key:'render',value:function render()
+
 	{var _this2=this;
-	var isOpen=this.state.isOpen;
-	var userType=this.props.user?_RoutesList2.default.user:_RoutesList2.default.guest;
-	var menuState=isOpen?'header-navRight open':'header-navRight close';
-	var menuIcon=isOpen?'icon-cross-circle close':'icon-menu';
-	var menuBackgournd=isOpen?'header-background open':'header-background close';
+	var userType=this.props.logged?_RoutesList2.default.user:_RoutesList2.default.guest;
+	var menuState=this.state.isOpen?'header-navRight open':'header-navRight close';
+	var menuIcon=this.state.isOpen?'icon-cross-circle close':'icon-menu';
+	var menuBackgournd=this.state.isOpen?'header-background open':'header-background close';
 
 	return(
 	_react2.default.createElement('nav',{className:'header-navWrapper',role:'navigation'},
@@ -26602,11 +26616,14 @@
 
 
 	_react2.default.createElement('ul',{className:menuState},
+	_react2.default.createElement('li',{className:'header-navRightItem'}),
+
+
 	userType.map(function(user,index){return(
 	_react2.default.createElement('li',{className:'header-navRightItem',key:index},
-	_react2.default.createElement('a',{onClick:_this2.toggleMenu,href:user.route},
-	user.label,
-	_react2.default.createElement('span',{className:user.icon}))));})),
+	_react2.default.createElement('a',{onClick:_this2.toggleMenu,href:'/#'+user.route},
+	_react2.default.createElement('span',{className:user.icon}),
+	user.label)));})),
 
 
 
@@ -26621,7 +26638,7 @@
 
 
 	MenuPhone.propTypes={
-	user:_react2.default.PropTypes.bool.isRequired};exports.default=
+	logged:_react2.default.PropTypes.bool.isRequired};exports.default=
 
 
 	MenuPhone;
@@ -26642,7 +26659,7 @@
 	var _react=__webpack_require__(1);var _react2=_interopRequireDefault(_react);
 	var _reactImageSlider=__webpack_require__(234);var _reactImageSlider2=_interopRequireDefault(_reactImageSlider);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var
 
-	Dashboard=function(_React$Component){_inherits(Dashboard,_React$Component);function Dashboard(){_classCallCheck(this,Dashboard);return _possibleConstructorReturn(this,(Dashboard.__proto__||Object.getPrototypeOf(Dashboard)).apply(this,arguments));}_createClass(Dashboard,[{key:'render',value:function render()
+	Home=function(_React$Component){_inherits(Home,_React$Component);function Home(){_classCallCheck(this,Home);return _possibleConstructorReturn(this,(Home.__proto__||Object.getPrototypeOf(Home)).apply(this,arguments));}_createClass(Home,[{key:'render',value:function render()
 	{
 	var images=[
 	'./assets/bg_1.jpg',
@@ -26657,13 +26674,13 @@
 	isInfinite:true,
 	delay:10000}),
 
-	_react2.default.createElement('h1',null,'Dashboard')));
+	_react2.default.createElement('h1',null,'HOME')));
 
 
-	}}]);return Dashboard;}(_react2.default.Component);exports.default=
+	}}]);return Home;}(_react2.default.Component);exports.default=
 
 
-	Dashboard;
+	Home;
 
 /***/ },
 /* 234 */

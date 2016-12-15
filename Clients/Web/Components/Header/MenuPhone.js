@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 13-Dec-2016
+* @Last modified time: 14-Dec-2016
 */
 
 import React from 'react';
@@ -22,11 +22,10 @@ class MenuPhone extends React.Component {
     }
 
     render() {
-        const isOpen = this.state.isOpen;
-        const userType = this.props.user ? routesList.user : routesList.guest;
-        const menuState = isOpen ? 'header-navRight open' : 'header-navRight close';
-        const menuIcon = isOpen ? 'icon-cross-circle close' : 'icon-menu';
-        const menuBackgournd = isOpen ? 'header-background open' : 'header-background close';
+        const userType = this.props.logged ? routesList.user : routesList.guest;
+        const menuState = this.state.isOpen ? 'header-navRight open' : 'header-navRight close';
+        const menuIcon = this.state.isOpen ? 'icon-cross-circle close' : 'icon-menu';
+        const menuBackgournd = this.state.isOpen ? 'header-background open' : 'header-background close';
 
         return (
             <nav className="header-navWrapper" role="navigation">
@@ -38,11 +37,14 @@ class MenuPhone extends React.Component {
                     </li>
                 </ul>
                 <ul className={menuState}>
+                    <li className="header-navRightItem">
+
+                    </li>
                     {userType.map((user, index) => (
                         <li className="header-navRightItem" key={index}>
-                            <a onClick={this.toggleMenu} href={user.route}>
-                                {user.label}
+                            <a onClick={this.toggleMenu} href={`/#${user.route}`}>
                                 <span className={user.icon}></span>
+                                {user.label}
                             </a>
                         </li>
                     ))}
@@ -57,7 +59,7 @@ class MenuPhone extends React.Component {
 }
 
 MenuPhone.propTypes = {
-    user: React.PropTypes.bool.isRequired
+    logged: React.PropTypes.bool.isRequired
 };
 
 export default MenuPhone;

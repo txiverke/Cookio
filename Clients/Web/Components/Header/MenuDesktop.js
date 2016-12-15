@@ -4,15 +4,15 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 13-Dec-2016
+* @Last modified time: 14-Dec-2016
 */
 
 import React from 'react';
 import { Link } from 'react-router';
 import routesList from '../Helpers/RoutesList';
 
-const MenuDesktop = ({user}) => {
-    const userType = user ? routesList.user : routesList.guest;
+const MenuDesktop = ({logged, user}) => {
+    const userType = logged ? routesList.user : routesList.guest;
 
     return (
         <nav className="header-navWrapper" role="navigation">
@@ -28,7 +28,8 @@ const MenuDesktop = ({user}) => {
 };
 
 MenuDesktop.propTypes = {
-    user: React.PropTypes.bool.isRequired
+    logged: React.PropTypes.bool.isRequired,
+    user: React.PropTypes.string.isRequired
 }
 
 export default MenuDesktop;

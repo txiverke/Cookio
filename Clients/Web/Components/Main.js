@@ -4,7 +4,7 @@
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
 * @Last modified by:   xavi
-* @Last modified time: 12-Dec-2016
+* @Last modified time: 14-Dec-2016
 */
 
 import React from 'react';
@@ -20,7 +20,10 @@ function getSize() {
 class Main extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { user: false };
+        this.state = {
+            logged: false,
+            user: ''
+        };
         this.onResize = this.onResize.bind(this);
         this.updateDimensions = this.updateDimensions.bind(this);
     }
@@ -58,10 +61,16 @@ class Main extends React.Component {
 
      render() {
          const windowWidth = this.state.windowWidth;
+         const logged = this.state.logged;
          const user = this.state.user;
+
          return (
              <div className="">
-                 <Header windowWidth={windowWidth} user={user}/>
+                 <Header
+                     windowWidth={windowWidth}
+                     logged={logged}
+                     user={user}
+                 />
                  <section className="content-wrapper">
                      {this.props.children}
                  </section>
