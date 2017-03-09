@@ -3,8 +3,6 @@
 * @Date:   18-Oct-2016
 * @Email:  txiverke@gmail.com
 * @Project: Cookio
-* @Last modified by:   txiverke
-* @Last modified time: 21-Oct-2016
 */
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
